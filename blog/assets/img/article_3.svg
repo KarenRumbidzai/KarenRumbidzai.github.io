@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f2027"/><stop offset="1" stop-color="#203a43"/></linearGradient>
+    <linearGradient id="keyP" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00c9a7"/><stop offset="1" stop-color="#00a884"/></linearGradient>
+    <linearGradient id="keyW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb703"/><stop offset="1" stop-color="#f8961e"/></linearGradient>
+    <filter id="sh3" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000" flood-opacity="0.4"/></filter>
+    <marker id="a3" markerWidth="11" markerHeight="11" refX="8" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#00c9a7"/></marker>
+    <marker id="a3b" markerWidth="11" markerHeight="11" refX="8" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#ffb703"/></marker>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg3)"/>
+  <text x="600" y="60" text-anchor="middle" fill="#ffffff" font-size="36" font-weight="bold">Multiple GitHub Accounts, One Machine</text>
+  <text x="600" y="96" text-anchor="middle" fill="#9db4c0" font-size="20">Separate SSH keys + SSH aliases + remote URLs = zero conflicts</text>
+  <g filter="url(#sh3)"><rect x="70" y="240" width="300" height="190" rx="14" fill="#0d1117" stroke="#58a6ff" stroke-width="3"/><rect x="90" y="262" width="260" height="130" rx="6" fill="#11233a"/>
+    <text x="110" y="292" fill="#7ee787" font-size="17" font-family="Consolas, monospace">$ ssh-keygen -t ed25519</text>
+    <text x="110" y="320" fill="#7ee787" font-size="17" font-family="Consolas, monospace">$ cat ~/.ssh/config</text>
+    <text x="110" y="348" fill="#8ea2c9" font-size="15" font-family="Consolas, monospace">Host github-personal …</text>
+    <text x="110" y="372" fill="#8ea2c9" font-size="15" font-family="Consolas, monospace">Host github-work …</text></g>
+  <path d="M 50 430 L 390 430 L 410 452 L 30 452 Z" fill="#1b2b3a" stroke="#58a6ff" stroke-width="2"/>
+  <text x="220" y="505" text-anchor="middle" fill="#9db4c0" font-size="18">Your machine</text>
+  <g transform="translate(520 200)" filter="url(#sh3)"><circle cx="0" cy="0" r="34" fill="none" stroke="url(#keyP)" stroke-width="12"/><rect x="26" y="-7" width="70" height="14" rx="7" fill="url(#keyP)"/><rect x="72" y="6" width="12" height="16" rx="3" fill="url(#keyP)"/><rect x="52" y="6" width="12" height="12" rx="3" fill="url(#keyP)"/></g>
+  <text x="520" y="272" text-anchor="middle" fill="#00c9a7" font-size="18" font-weight="bold" font-family="Consolas, monospace">id_ed25519_personal</text>
+  <g transform="translate(520 420)" filter="url(#sh3)"><circle cx="0" cy="0" r="34" fill="none" stroke="url(#keyW)" stroke-width="12"/><rect x="26" y="-7" width="70" height="14" rx="7" fill="url(#keyW)"/><rect x="72" y="6" width="12" height="16" rx="3" fill="url(#keyW)"/><rect x="52" y="6" width="12" height="12" rx="3" fill="url(#keyW)"/></g>
+  <text x="520" y="492" text-anchor="middle" fill="#ffb703" font-size="18" font-weight="bold" font-family="Consolas, monospace">id_ed25519_work</text>
+  <path d="M 370 280 C 430 260, 450 220, 486 202" fill="none" stroke="#00c9a7" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#a3)"/>
+  <path d="M 370 400 C 430 420, 450 415, 486 414" fill="none" stroke="#ffb703" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#a3b)"/>
+  <circle cx="905" cy="200" r="72" fill="#0d1117" stroke="#00c9a7" stroke-width="4" filter="url(#sh3)"/>
+  <g transform="translate(905 195)"><path d="M -32 -14 L -36 -38 L -14 -24 Z" fill="#fff"/><path d="M 32 -14 L 36 -38 L 14 -24 Z" fill="#fff"/><ellipse cx="0" cy="5" rx="36" ry="29" fill="#fff"/><circle cx="-13" cy="-1" r="4.5" fill="#0d1117"/><circle cx="13" cy="-1" r="4.5" fill="#0d1117"/></g>
+  <text x="905" y="300" text-anchor="middle" fill="#00c9a7" font-size="19" font-weight="bold" font-family="Consolas, monospace">github-personal</text>
+  <text x="905" y="326" text-anchor="middle" fill="#9db4c0" font-size="16">personal repos</text>
+  <circle cx="905" cy="440" r="72" fill="#0d1117" stroke="#ffb703" stroke-width="4" filter="url(#sh3)"/>
+  <g transform="translate(905 435)"><path d="M -32 -14 L -36 -38 L -14 -24 Z" fill="#fff"/><path d="M 32 -14 L 36 -38 L 14 -24 Z" fill="#fff"/><ellipse cx="0" cy="5" rx="36" ry="29" fill="#fff"/><circle cx="-13" cy="-1" r="4.5" fill="#0d1117"/><circle cx="13" cy="-1" r="4.5" fill="#0d1117"/></g>
+  <text x="905" y="540" text-anchor="middle" fill="#ffb703" font-size="19" font-weight="bold" font-family="Consolas, monospace">github-work</text>
+  <text x="905" y="566" text-anchor="middle" fill="#9db4c0" font-size="16">company repos</text>
+  <path d="M 620 200 C 720 200, 780 200, 828 200" fill="none" stroke="#00c9a7" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#a3)"/>
+  <path d="M 620 420 C 720 420, 780 420, 828 420" fill="none" stroke="#ffb703" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#a3b)"/>
+  <text x="600" y="612" text-anchor="middle" fill="#5f7a88" font-size="15">Each repo's remote URL picks the alias · the alias picks the key · the key picks the account</text>
+</svg>

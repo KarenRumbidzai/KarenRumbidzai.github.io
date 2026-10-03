@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One Machine, Many GitHub Accounts | Karen Rumbie</title>
+<meta name="description" content="Five short articles on running personal and work GitHub accounts side by side on a single computer: from why Git picks the wrong account to fixing &quot;Repository not found&quot; for good.">
+<meta property="og:title" content="One Machine, Many GitHub Accounts | Karen Rumbie">
+<meta property="og:description" content="Five short articles on running personal and work GitHub accounts side by side on a single computer: from why Git picks the wrong account to fixing &quot;Repository not found&quot; for good.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#7C9D96">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C9D96'/%3E%3Cpath d='m13 11-5 5 5 5M19 11l5 5-5 5' fill='none' stroke='%232C3E3B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/blog/"><span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span><span>Karen Rumbie<small>Dev Notes</small></span></a>
+    <nav class="nav" aria-label="Main"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/#series" aria-current="page">Series</a></nav>
+  </div>
+</header>
+<main id="main">
+
+<section class="page-head">
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true">/</span><span>Series</span></nav>
+    <h1>One Machine, Many GitHub Accounts</h1>
+    <p class="lead">Five short articles on running personal and work GitHub accounts side by side on a single computer: from why Git picks the wrong account to fixing &quot;Repository not found&quot; for good.</p>
+    <div class="meta"><span class="chip chip--accent"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> 5 parts</span><span class="chip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 min total</span></div>
+    <div class="hero__cta"><a class="btn btn--accent" href="/blog/posts/why-git-keeps-using-the-wrong-github-account/">Start with Part 1 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+  </div>
+</section>
+<section class="section">
+  <div class="container"><div class="parts">
+    <a class="card part" href="/blog/posts/why-git-keeps-using-the-wrong-github-account/">
+      <div class="thumb thumb--contain" style="--thumb-bg:#f2edef"><img src="/blog/assets/img/article_1.png" alt="Diagram of one laptop connecting to several GitHub accounts" loading="lazy" decoding="async"></div>
+      <div>
+        <span class="part__num">Part 1</span>
+        <h2>Why Git Keeps Using the Wrong GitHub Account (Even When Your Email Is Correct)</h2>
+        <p>Your commit email is right, but pushes still go out as the wrong account. Git has three separate layers, and only one decides who you are on GitHub.</p>
+        <div class="meta"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 1 min read</span></div>
+      </div>
+    </a>
+    <a class="card part" href="/blog/posts/git-identity-vs-authentication/">
+      <div class="thumb thumb--contain" style="--thumb-bg:#eef2f4"><img src="/blog/assets/img/article_2.jpeg" alt="Diagram comparing the SSH authentication layer with Git commit identity" loading="lazy" decoding="async"></div>
+      <div>
+        <span class="part__num">Part 2</span>
+        <h2>Git Identity vs Authentication: The Difference That Causes Most GitHub Problems</h2>
+        <p>A three-layer mental model (commit identity, authentication, remote URL) that makes most GitHub account problems easy to diagnose.</p>
+        <div class="meta"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 1 min read</span></div>
+      </div>
+    </a>
+    <a class="card part" href="/blog/posts/multiple-github-accounts-one-machine/">
+      <div class="thumb" style="--thumb-bg:#0f2027"><img src="/blog/assets/img/article_3.svg" alt="Illustration of a personal and a work SSH key, each leading to its own GitHub account" loading="lazy" decoding="async"></div>
+      <div>
+        <span class="part__num">Part 3</span>
+        <h2>How to Use Multiple GitHub Accounts on One Machine</h2>
+        <p>Generate separate SSH keys, wire them to aliases in ~/.ssh/config, and point each repo at the right one.</p>
+        <div class="meta"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 1 min read</span></div>
+      </div>
+    </a>
+    <a class="card part" href="/blog/posts/ssh-config-aliases-explained/">
+      <div class="thumb" style="--thumb-bg:#1f1c3a"><img src="/blog/assets/img/article_4.svg" alt="Diagram of the SSH config acting as an alias router to github.com" loading="lazy" decoding="async"></div>
+      <div>
+        <span class="part__num">Part 4</span>
+        <h2>Understanding SSH Config Aliases for GitHub</h2>
+        <p>Where does github-work come from? How SSH aliases quietly route every repo to the right key.</p>
+        <div class="meta"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 1 min read</span></div>
+      </div>
+    </a>
+    <a class="card part" href="/blog/posts/fixing-repository-not-found/">
+      <div class="thumb thumb--frame" style="--thumb-bg:#2C3E3B"><img src="/blog/assets/img/article_5.png" alt="VS Code dialog reading: Git: remote: Repository not found" loading="lazy" decoding="async"></div>
+      <div>
+        <span class="part__num">Part 5</span>
+        <h2>Fixing &#x27;Repository Not Found&#x27; When the Repository Actually Exists</h2>
+        <p>The repository exists, but the account you&#x27;re authenticated as can&#x27;t see it. How to confirm the real cause with one command, then fix it.</p>
+        <div class="meta"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 1 min read</span></div>
+      </div>
+    </a>
+  </div></div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><strong>Karen Rumbie · Dev Notes</strong><p>Frontend lessons from years of trial and error, written so you can skip the trial.</p></div>
+      <div class="footer-links"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a></div>
+    </div>
+    <div class="footer-copy">© 2026 Karen Rumbie</div>
+  </div>
+</footer>
+
+</body>
+</html>
