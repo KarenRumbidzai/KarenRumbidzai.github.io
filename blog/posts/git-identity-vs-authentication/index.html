@@ -1,98 +1,251 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Git Identity vs Authentication: The Difference That Causes Most GitHub Problems | Karen Rumbie</title>
-<meta name="description" content="A three-layer mental model (commit identity, authentication, remote URL) that makes most GitHub account problems easy to diagnose.">
-<meta property="og:title" content="Git Identity vs Authentication: The Difference That Causes Most GitHub Problems | Karen Rumbie">
-<meta property="og:description" content="A three-layer mental model (commit identity, authentication, remote URL) that makes most GitHub account problems easy to diagnose.">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#7C9D96">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C9D96'/%3E%3Cpath d='m13 11-5 5 5 5M19 11l5 5-5 5' fill='none' stroke='%232C3E3B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="/blog/assets/blog.css">
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site-header">
-  <div class="container">
-    <a class="brand" href="/blog/"><span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span><span>Karen Rumbie<small>Dev Notes</small></span></a>
-    <nav class="nav" aria-label="Main"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/" aria-current="page">Blog</a><a href="/blog/#series">Series</a></nav>
-  </div>
-</header>
-<main id="main">
-
-<article>
-  <header class="post-head">
-    <div class="container"><div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true">/</span><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a></nav>
-      <h1>Git Identity vs Authentication: The Difference That Causes Most GitHub Problems</h1>
-      <div class="meta">
-        <span class="chip chip--accent"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Part 2 of 5</span>
-        <time datetime="2026-09-29">29 Sep 2026</time>
-        <span>·</span><span>1 min read</span>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Git Identity vs Authentication: The Difference That Causes Most GitHub
+      Problems | Karen Rumbie
+    </title>
+    <meta
+      name="description"
+      content="A three-layer mental model (commit identity, authentication, remote URL) that makes most GitHub account problems easy to diagnose."
+    />
+    <meta
+      property="og:title"
+      content="Git Identity vs Authentication: The Difference That Causes Most GitHub Problems | Karen Rumbie"
+    />
+    <meta
+      property="og:description"
+      content="A three-layer mental model (commit identity, authentication, remote URL) that makes most GitHub account problems easy to diagnose."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7C9D96" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C9D96'/%3E%3Cpath d='m13 11-5 5 5 5M19 11l5 5-5 5' fill='none' stroke='%232C3E3B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+    />
+    <link rel="stylesheet" href="/blog/assets/blog.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/blog/"
+          ><span class="brand__mark"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="m18 16 4-4-4-4" />
+              <path d="m6 8-4 4 4 4" />
+              <path d="m14.5 4-5 16" /></svg></span
+          ><span>Karen Rumbie<small>Dev Notes</small></span></a
+        >
+        <nav class="nav" aria-label="Main">
+          <a href="https://github.com/KarenRumbidzai">GitHub</a
+          ><a href="/blog/" aria-current="page">Blog</a
+          ><a href="/blog/#series">Series</a>
+        </nav>
       </div>
-      <div class="tags" style="margin-top:.9rem"><span class="chip">git</span><span class="chip">github</span><span class="chip">ssh</span><span class="chip">mental-models</span></div>
-    </div></div>
-  </header>
-  <div class="container">
-    <figure class="cover cover--contain" style="--thumb-bg:#eef2f4;margin-bottom:2.25rem">
-      <img src="/blog/assets/img/article_2.jpeg" alt="Diagram comparing the SSH authentication layer with Git commit identity" decoding="async"></figure>
-    <div class="prose">
-<p>One of the most common misconceptions in Git is assuming that your email address determines which GitHub account is used.</p>
-<p><strong>It doesn't.</strong></p>
-<p>Think of Git in three layers:</p>
-<h2 id="layer-1-commit-identity">Layer 1: Commit Identity</h2>
-<pre><code class="language-bash">git config user.name
+    </header>
+    <main id="main">
+      <article>
+        <header class="post-head">
+          <div class="container">
+            <div class="wrap">
+              <nav class="crumbs" aria-label="Breadcrumb">
+                <a href="/blog/">Blog</a><span aria-hidden="true">/</span
+                ><a href="/blog/series/one-machine-many-github-accounts/"
+                  >One Machine, Many GitHub Accounts</a
+                >
+              </nav>
+              <h1>
+                Git Identity vs Authentication: The Difference That Causes Most
+                GitHub Problems
+              </h1>
+              <div class="meta">
+                <span class="chip chip--accent"
+                  ><svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"
+                    />
+                  </svg>
+                  Part 2 of 5</span
+                >
+                <time datetime="2026-09-29">29 Sep 2026</time>
+                <span>·</span><span>1 min read</span>
+              </div>
+              <div class="tags" style="margin-top: 0.9rem">
+                <span class="chip">git</span><span class="chip">github</span
+                ><span class="chip">ssh</span
+                ><span class="chip">mental-models</span>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="container">
+          <figure
+            class="cover cover--contain"
+            style="--thumb-bg: #eef2f4; margin-bottom: 2.25rem"
+          >
+            <img
+              src="/blog/assets/img/article_2.jpeg"
+              alt="Diagram comparing the SSH authentication layer with Git commit identity"
+              decoding="async"
+            />
+          </figure>
+          <div class="prose">
+            <p>
+              One of the most common misconceptions in Git is assuming that your
+              email address determines which GitHub account is used.
+            </p>
+            <p><strong>It doesn't.</strong></p>
+            <p>Think of Git in three layers:</p>
+            <h2 id="layer-1-commit-identity">Layer 1: Commit Identity</h2>
+            <pre><code class="language-bash">git config user.name
 git config user.email
 </code></pre>
-<p>This determines who appears as the <strong>author</strong> of a commit.</p>
-<h2 id="layer-2-authentication">Layer 2: Authentication</h2>
-<p>SSH keys determine <strong>who GitHub believes you are</strong>.</p>
-<p>For example:</p>
-<pre><code class="language-bash">ssh -T git@github-work
+            <p>
+              This determines who appears as the <strong>author</strong> of a
+              commit.
+            </p>
+            <h2 id="layer-2-authentication">Layer 2: Authentication</h2>
+            <p>
+              SSH keys determine <strong>who GitHub believes you are</strong>.
+            </p>
+            <p>For example:</p>
+            <pre><code class="language-bash">ssh -T git@github-work
 </code></pre>
-<p>might authenticate as:</p>
-<pre><code>Hi work-username! You've successfully authenticated...
+            <p>might authenticate as:</p>
+            <pre><code>Hi work-username! You've successfully authenticated...
 </code></pre>
-<p>while:</p>
-<pre><code class="language-bash">ssh -T git@github-personal
+            <p>while:</p>
+            <pre><code class="language-bash">ssh -T git@github-personal
 </code></pre>
-<p>authenticates as:</p>
-<pre><code>Hi personal-username! You've successfully authenticated...
+            <p>authenticates as:</p>
+            <pre><code>Hi personal-username! You've successfully authenticated...
 </code></pre>
-<h2 id="layer-3-remote-url">Layer 3: Remote URL</h2>
-<p>The remote URL tells Git <strong>which SSH configuration to use</strong>.</p>
-<p>For example:</p>
-<pre><code class="language-bash">git@github-work:company/repo.git
+            <h2 id="layer-3-remote-url">Layer 3: Remote URL</h2>
+            <p>
+              The remote URL tells Git
+              <strong>which SSH configuration to use</strong>.
+            </p>
+            <p>For example:</p>
+            <pre><code class="language-bash">git@github-work:company/repo.git
 </code></pre>
-<p>uses the work account, whereas:</p>
-<pre><code class="language-bash">git@github-personal:username/repo.git
+            <p>uses the work account, whereas:</p>
+            <pre><code class="language-bash">git@github-personal:username/repo.git
 </code></pre>
-<p>uses the personal account.</p>
-<p>Understanding these three layers makes troubleshooting Git issues dramatically easier — and it's the foundation for the setup we'll build in <a href="/blog/posts/multiple-github-accounts-one-machine/">Part 3</a>.</p>
-    </div>
-    <aside class="card series-box" aria-label="In this series">
-      <h2><span class="tile tile--terra"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></span> In this series: One Machine, Many GitHub Accounts</h2>
-      <ol class="series-list"><li><a href="/blog/posts/why-git-keeps-using-the-wrong-github-account/"><span class="n">1</span>Why Git Keeps Using the Wrong GitHub Account (Even When Your Email Is Correct)</a></li><li><span class="current" aria-current="page"><span class="n">2</span>Git Identity vs Authentication: The Difference That Causes Most GitHub Problems</span></li><li><a href="/blog/posts/multiple-github-accounts-one-machine/"><span class="n">3</span>How to Use Multiple GitHub Accounts on One Machine</a></li><li><a href="/blog/posts/ssh-config-aliases-explained/"><span class="n">4</span>Understanding SSH Config Aliases for GitHub</a></li><li><a href="/blog/posts/fixing-repository-not-found/"><span class="n">5</span>Fixing &#x27;Repository Not Found&#x27; When the Repository Actually Exists</a></li></ol>
-    </aside>
-    <nav class="pager" aria-label="Series navigation"><a class="prev" href="/blog/posts/why-git-keeps-using-the-wrong-github-account/"><small>← Previous · Part 1</small>Why Git Keeps Using the Wrong GitHub Account (Even When Your Email Is Correct)</a><a class="next" href="/blog/posts/multiple-github-accounts-one-machine/"><small>Next · Part 3 →</small>How to Use Multiple GitHub Accounts on One Machine</a></nav>
-  </div>
-</article>
-
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div><strong>Karen Rumbie · Dev Notes</strong><p>Frontend lessons from years of trial and error, written so you can skip the trial.</p></div>
-      <div class="footer-links"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a></div>
-    </div>
-    <div class="footer-copy">© 2026 Karen Rumbie</div>
-  </div>
-</footer>
-<script src="/blog/assets/blog.js" defer></script>
-</body>
+            <p>uses the personal account.</p>
+            <p>
+              Understanding these three layers makes troubleshooting Git issues
+              dramatically easier and it's the foundation for the setup we'll
+              build in
+              <a href="/blog/posts/multiple-github-accounts-one-machine/"
+                >Part 3</a
+              >.
+            </p>
+          </div>
+          <aside class="card series-box" aria-label="In this series">
+            <h2>
+              <span class="tile tile--terra"
+                ><svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"
+                  /></svg
+              ></span>
+              In this series: One Machine, Many GitHub Accounts
+            </h2>
+            <ol class="series-list">
+              <li>
+                <a
+                  href="/blog/posts/why-git-keeps-using-the-wrong-github-account/"
+                  ><span class="n">1</span>Why Git Keeps Using the Wrong GitHub
+                  Account (Even When Your Email Is Correct)</a
+                >
+              </li>
+              <li>
+                <span class="current" aria-current="page"
+                  ><span class="n">2</span>Git Identity vs Authentication: The
+                  Difference That Causes Most GitHub Problems</span
+                >
+              </li>
+              <li>
+                <a href="/blog/posts/multiple-github-accounts-one-machine/"
+                  ><span class="n">3</span>How to Use Multiple GitHub Accounts
+                  on One Machine</a
+                >
+              </li>
+              <li>
+                <a href="/blog/posts/ssh-config-aliases-explained/"
+                  ><span class="n">4</span>Understanding SSH Config Aliases for
+                  GitHub</a
+                >
+              </li>
+              <li>
+                <a href="/blog/posts/fixing-repository-not-found/"
+                  ><span class="n">5</span>Fixing &#x27;Repository Not
+                  Found&#x27; When the Repository Actually Exists</a
+                >
+              </li>
+            </ol>
+          </aside>
+          <nav class="pager" aria-label="Series navigation">
+            <a
+              class="prev"
+              href="/blog/posts/why-git-keeps-using-the-wrong-github-account/"
+              ><small>← Previous · Part 1</small>Why Git Keeps Using the Wrong
+              GitHub Account (Even When Your Email Is Correct)</a
+            ><a
+              class="next"
+              href="/blog/posts/multiple-github-accounts-one-machine/"
+              ><small>Next · Part 3 →</small>How to Use Multiple GitHub Accounts
+              on One Machine</a
+            >
+          </nav>
+        </div>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <strong>Karen Rumbie · Dev Notes</strong>
+            <p>
+              Frontend lessons from years of trial and error, written so you can
+              skip the trial.
+            </p>
+          </div>
+          <div class="footer-links">
+            <a href="https://github.com/KarenRumbidzai">GitHub</a
+            ><a href="/blog/">Blog</a
+            ><a href="/blog/series/one-machine-many-github-accounts/"
+              >One Machine, Many GitHub Accounts</a
+            >
+          </div>
+        </div>
+        <div class="footer-copy">© 2026 Karen Rumbie</div>
+      </div>
+    </footer>
+    <script src="/blog/assets/blog.js" defer></script>
+  </body>
 </html>

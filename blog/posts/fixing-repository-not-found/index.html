@@ -1,97 +1,261 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fixing &#x27;Repository Not Found&#x27; When the Repository Actually Exists | Karen Rumbie</title>
-<meta name="description" content="The repository exists, but the account you&#x27;re authenticated as can&#x27;t see it. How to confirm the real cause with one command, then fix it.">
-<meta property="og:title" content="Fixing &#x27;Repository Not Found&#x27; When the Repository Actually Exists | Karen Rumbie">
-<meta property="og:description" content="The repository exists, but the account you&#x27;re authenticated as can&#x27;t see it. How to confirm the real cause with one command, then fix it.">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#7C9D96">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C9D96'/%3E%3Cpath d='m13 11-5 5 5 5M19 11l5 5-5 5' fill='none' stroke='%232C3E3B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="/blog/assets/blog.css">
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site-header">
-  <div class="container">
-    <a class="brand" href="/blog/"><span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span><span>Karen Rumbie<small>Dev Notes</small></span></a>
-    <nav class="nav" aria-label="Main"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/" aria-current="page">Blog</a><a href="/blog/#series">Series</a></nav>
-  </div>
-</header>
-<main id="main">
-
-<article>
-  <header class="post-head">
-    <div class="container"><div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true">/</span><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a></nav>
-      <h1>Fixing &#x27;Repository Not Found&#x27; When the Repository Actually Exists</h1>
-      <div class="meta">
-        <span class="chip chip--accent"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Part 5 of 5</span>
-        <time datetime="2026-09-29">29 Sep 2026</time>
-        <span>·</span><span>1 min read</span>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Fixing &#x27;Repository Not Found&#x27; When the Repository Actually
+      Exists | Karen Rumbie
+    </title>
+    <meta
+      name="description"
+      content="The repository exists, but the account you&#x27;re authenticated as can&#x27;t see it. How to confirm the real cause with one command, then fix it."
+    />
+    <meta
+      property="og:title"
+      content="Fixing &#x27;Repository Not Found&#x27; When the Repository Actually Exists | Karen Rumbie"
+    />
+    <meta
+      property="og:description"
+      content="The repository exists, but the account you&#x27;re authenticated as can&#x27;t see it. How to confirm the real cause with one command, then fix it."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7C9D96" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C9D96'/%3E%3Cpath d='m13 11-5 5 5 5M19 11l5 5-5 5' fill='none' stroke='%232C3E3B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+    />
+    <link rel="stylesheet" href="/blog/assets/blog.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/blog/"
+          ><span class="brand__mark"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="m18 16 4-4-4-4" />
+              <path d="m6 8-4 4 4 4" />
+              <path d="m14.5 4-5 16" /></svg></span
+          ><span>Karen Rumbie<small>Dev Notes</small></span></a
+        >
+        <nav class="nav" aria-label="Main">
+          <a href="https://github.com/KarenRumbidzai">GitHub</a
+          ><a href="/blog/" aria-current="page">Blog</a
+          ><a href="/blog/#series">Series</a>
+        </nav>
       </div>
-      <div class="tags" style="margin-top:.9rem"><span class="chip">git</span><span class="chip">github</span><span class="chip">troubleshooting</span><span class="chip">ssh</span></div>
-    </div></div>
-  </header>
-  <div class="container">
-    <figure class="cover cover--frame" style="--thumb-bg:#2C3E3B;margin-bottom:2.25rem">
-      <img src="/blog/assets/img/article_5.png" alt="VS Code dialog reading: Git: remote: Repository not found" decoding="async"></figure>
-    <div class="prose">
-<p>One of GitHub's most confusing error messages is:</p>
-<pre><code>ERROR: Repository not found.
+    </header>
+    <main id="main">
+      <article>
+        <header class="post-head">
+          <div class="container">
+            <div class="wrap">
+              <nav class="crumbs" aria-label="Breadcrumb">
+                <a href="/blog/">Blog</a><span aria-hidden="true">/</span
+                ><a href="/blog/series/one-machine-many-github-accounts/"
+                  >One Machine, Many GitHub Accounts</a
+                >
+              </nav>
+              <h1>
+                Fixing &#x27;Repository Not Found&#x27; When the Repository
+                Actually Exists
+              </h1>
+              <div class="meta">
+                <span class="chip chip--accent"
+                  ><svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"
+                    />
+                  </svg>
+                  Part 5 of 5</span
+                >
+                <time datetime="2026-09-29">29 Sep 2026</time>
+                <span>·</span><span>1 min read</span>
+              </div>
+              <div class="tags" style="margin-top: 0.9rem">
+                <span class="chip">git</span><span class="chip">github</span
+                ><span class="chip">troubleshooting</span
+                ><span class="chip">ssh</span>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="container">
+          <figure
+            class="cover cover--frame"
+            style="--thumb-bg: #2c3e3b; margin-bottom: 2.25rem"
+          >
+            <img
+              src="/blog/assets/img/article_5.png"
+              alt="VS Code dialog reading: Git: remote: Repository not found"
+              decoding="async"
+            />
+          </figure>
+          <div class="prose">
+            <p>One of GitHub's most confusing error messages is:</p>
+            <pre><code>ERROR: Repository not found.
 fatal: Could not read from remote repository.
 </code></pre>
-<p>Many developers immediately assume the repository URL is wrong. Often, the repository exists perfectly fine — <strong>the real issue is authentication</strong>.</p>
-<p>For example:</p>
-<pre><code class="language-bash">ssh -T git@github-work
+            <p>
+              Many developers immediately assume the repository URL is wrong.
+              Often, the repository exists perfectly fine -
+              <strong>the real issue is authentication</strong>.
+            </p>
+            <p>For example:</p>
+            <pre><code class="language-bash">ssh -T git@github-work
 </code></pre>
-<p>might unexpectedly return:</p>
-<pre><code>Hi personal-username! You've successfully authenticated...
+            <p>might unexpectedly return:</p>
+            <pre><code>Hi personal-username! You've successfully authenticated...
 </code></pre>
-<p>instead of:</p>
-<pre><code>Hi work-username! You've successfully authenticated...
+            <p>instead of:</p>
+            <pre><code>Hi work-username! You've successfully authenticated...
 </code></pre>
-<p>This means GitHub is identifying you as the <em>wrong</em> account. Since that account lacks access to the repository, GitHub responds with:</p>
-<blockquote>
-<p>Repository not found.</p>
-</blockquote>
-<p><strong>The repository exists. Your permissions do not.</strong></p>
-<p>Always verify your SSH identity before troubleshooting repository URLs:</p>
-<pre><code class="language-bash">ssh -T git@github-work
+            <p>
+              This means GitHub is identifying you as the
+              <em>wrong</em> account. Since that account lacks access to the
+              repository, GitHub responds with:
+            </p>
+            <blockquote>
+              <p>Repository not found.</p>
+            </blockquote>
+            <p>
+              <strong>The repository exists. Your permissions do not.</strong>
+            </p>
+            <p>
+              Always verify your SSH identity before troubleshooting repository
+              URLs:
+            </p>
+            <pre><code class="language-bash">ssh -T git@github-work
 </code></pre>
-<p>If the wrong username comes back, check your <code>~/.ssh/config</code> alias — usually the wrong <code>IdentityFile</code> is being offered (or <code>IdentitiesOnly</code> is missing), and GitHub accepts the first key it recognizes.</p>
-<h2 id="series-recap">Series recap</h2>
-<ol>
-<li><a href="/blog/posts/why-git-keeps-using-the-wrong-github-account/">Why Git keeps using the wrong account</a></li>
-<li><a href="/blog/posts/git-identity-vs-authentication/">Git identity vs authentication</a></li>
-<li><a href="/blog/posts/multiple-github-accounts-one-machine/">Multiple accounts on one machine</a></li>
-<li><a href="/blog/posts/ssh-config-aliases-explained/">SSH config aliases explained</a></li>
-<li>Fixing "Repository not found" (this post)</li>
-</ol>
-    </div>
-    <aside class="card series-box" aria-label="In this series">
-      <h2><span class="tile tile--terra"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></span> In this series: One Machine, Many GitHub Accounts</h2>
-      <ol class="series-list"><li><a href="/blog/posts/why-git-keeps-using-the-wrong-github-account/"><span class="n">1</span>Why Git Keeps Using the Wrong GitHub Account (Even When Your Email Is Correct)</a></li><li><a href="/blog/posts/git-identity-vs-authentication/"><span class="n">2</span>Git Identity vs Authentication: The Difference That Causes Most GitHub Problems</a></li><li><a href="/blog/posts/multiple-github-accounts-one-machine/"><span class="n">3</span>How to Use Multiple GitHub Accounts on One Machine</a></li><li><a href="/blog/posts/ssh-config-aliases-explained/"><span class="n">4</span>Understanding SSH Config Aliases for GitHub</a></li><li><span class="current" aria-current="page"><span class="n">5</span>Fixing &#x27;Repository Not Found&#x27; When the Repository Actually Exists</span></li></ol>
-    </aside>
-    <nav class="pager" aria-label="Series navigation"><a class="prev" href="/blog/posts/ssh-config-aliases-explained/"><small>← Previous · Part 4</small>Understanding SSH Config Aliases for GitHub</a></nav>
-  </div>
-</article>
-
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div><strong>Karen Rumbie · Dev Notes</strong><p>Frontend lessons from years of trial and error, written so you can skip the trial.</p></div>
-      <div class="footer-links"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a></div>
-    </div>
-    <div class="footer-copy">© 2026 Karen Rumbie</div>
-  </div>
-</footer>
-<script src="/blog/assets/blog.js" defer></script>
-</body>
+            <p>
+              If the wrong username comes back, check your
+              <code>~/.ssh/config</code> alias - usually the wrong
+              <code>IdentityFile</code> is being offered (or
+              <code>IdentitiesOnly</code> is missing), and GitHub accepts the
+              first key it recognizes.
+            </p>
+            <h2 id="series-recap">Series recap</h2>
+            <ol>
+              <li>
+                <a
+                  href="/blog/posts/why-git-keeps-using-the-wrong-github-account/"
+                  >Why Git keeps using the wrong account</a
+                >
+              </li>
+              <li>
+                <a href="/blog/posts/git-identity-vs-authentication/"
+                  >Git identity vs authentication</a
+                >
+              </li>
+              <li>
+                <a href="/blog/posts/multiple-github-accounts-one-machine/"
+                  >Multiple accounts on one machine</a
+                >
+              </li>
+              <li>
+                <a href="/blog/posts/ssh-config-aliases-explained/"
+                  >SSH config aliases explained</a
+                >
+              </li>
+              <li>Fixing "Repository not found" (this post)</li>
+            </ol>
+          </div>
+          <aside class="card series-box" aria-label="In this series">
+            <h2>
+              <span class="tile tile--terra"
+                ><svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"
+                  /></svg
+              ></span>
+              In this series: One Machine, Many GitHub Accounts
+            </h2>
+            <ol class="series-list">
+              <li>
+                <a
+                  href="/blog/posts/why-git-keeps-using-the-wrong-github-account/"
+                  ><span class="n">1</span>Why Git Keeps Using the Wrong GitHub
+                  Account (Even When Your Email Is Correct)</a
+                >
+              </li>
+              <li>
+                <a href="/blog/posts/git-identity-vs-authentication/"
+                  ><span class="n">2</span>Git Identity vs Authentication: The
+                  Difference That Causes Most GitHub Problems</a
+                >
+              </li>
+              <li>
+                <a href="/blog/posts/multiple-github-accounts-one-machine/"
+                  ><span class="n">3</span>How to Use Multiple GitHub Accounts
+                  on One Machine</a
+                >
+              </li>
+              <li>
+                <a href="/blog/posts/ssh-config-aliases-explained/"
+                  ><span class="n">4</span>Understanding SSH Config Aliases for
+                  GitHub</a
+                >
+              </li>
+              <li>
+                <span class="current" aria-current="page"
+                  ><span class="n">5</span>Fixing &#x27;Repository Not
+                  Found&#x27; When the Repository Actually Exists</span
+                >
+              </li>
+            </ol>
+          </aside>
+          <nav class="pager" aria-label="Series navigation">
+            <a class="prev" href="/blog/posts/ssh-config-aliases-explained/"
+              ><small>← Previous · Part 4</small>Understanding SSH Config
+              Aliases for GitHub</a
+            >
+          </nav>
+        </div>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <strong>Karen Rumbie · Dev Notes</strong>
+            <p>
+              Frontend lessons from years of trial and error, written so you can
+              skip the trial.
+            </p>
+          </div>
+          <div class="footer-links">
+            <a href="https://github.com/KarenRumbidzai">GitHub</a
+            ><a href="/blog/">Blog</a
+            ><a href="/blog/series/one-machine-many-github-accounts/"
+              >One Machine, Many GitHub Accounts</a
+            >
+          </div>
+        </div>
+        <div class="footer-copy">© 2026 Karen Rumbie</div>
+      </div>
+    </footer>
+    <script src="/blog/assets/blog.js" defer></script>
+  </body>
 </html>
