@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The AI-Enabled TPM: From Status Updates to Delivery Intelligence | Karen Rumbie</title>
+<meta name="description" content="Discover how a Technical Project Manager can use AI to analyse project data, identify delivery risks, manage dependencies, and make better-informed decisions.">
+<meta property="og:title" content="The AI-Enabled TPM: From Status Updates to Delivery Intelligence | Karen Rumbie">
+<meta property="og:description" content="Discover how a Technical Project Manager can use AI to analyse project data, identify delivery risks, manage dependencies, and make better-informed decisions.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#7C9D96">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C9D96'/%3E%3Cpath d='m13 11-5 5 5 5M19 11l5 5-5 5' fill='none' stroke='%232C3E3B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/blog/"><span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span><span>Karen Rumbie<small>Dev Notes</small></span></a>
+    <div class="header-actions">
+      <nav class="nav" aria-label="Main"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/" aria-current="page">Blog</a><a href="/blog/#series">Series</a></nav>
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-14.93 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<article>
+  <header class="post-head">
+    <div class="container"><div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true">/</span><span>AI in Practice</span></nav>
+      <h1>The AI-Enabled TPM: From Status Updates to Delivery Intelligence</h1>
+      <div class="meta">
+        
+        <time datetime="2026-10-21">21 Oct 2026</time>
+        <span>·</span><span>8 min read</span>
+      </div>
+      <div class="tags" style="margin-top:.9rem"></div>
+    </div></div>
+  </header>
+  <div class="container">
+    <figure class="cover cover--frame" style="--thumb-bg:#2C3E3B;margin-bottom:2.25rem">
+      <img src="/blog/assets/img/ai-tpm-automation.png" alt="AI-assisted technical project management, connecting project data, delivery risks, and informed decisions" decoding="async"></figure>
+    <div class="prose">
+<h1 id="the-ai-enabled-technical-project-manager-from-status-updates-to-delivery-intelligence">The AI-Enabled Technical Project Manager: From Status Updates to Delivery Intelligence</h1>
+<p><em>Practical lessons from software development, technical leadership and delivery.</em></p>
+<p>AI is changing how software gets built. But there's another question worth asking: how should it change the way we manage software delivery?</p>
+<p>For a Technical Project Manager (TPM), the opportunity goes well beyond using ChatGPT to write meeting minutes or draft stakeholder emails. The real value lies in using AI to connect information scattered across engineering teams, identify delivery risks earlier, and make better-informed decisions.</p>
+<p>The goal isn't to replace project management with AI. It's to spend less time chasing information and more time acting on it.</p>
+<h2 id="1-start-with-the-problem-not-the-ai-tool">1. Start with the problem, not the AI tool</h2>
+<p>A typical software project generates enormous amounts of information. Requirements live in documents, work is tracked in Jira, technical decisions are discussed in meetings, code changes happen in GitHub, and delivery updates arrive through Slack or Microsoft Teams.</p>
+<p>The problem isn't necessarily a lack of information. It's that the information is fragmented.</p>
+<p>A developer might have identified a blocker in a meeting, but the Jira ticket hasn't been updated. A backend dependency might be slipping, while the frontend team is still working towards the original integration date. A milestone might appear healthy on a dashboard even though a critical decision remains unresolved.</p>
+<p>A TPM has to connect these signals.</p>
+<p>This is where AI becomes useful: not as another place to store information, but as a tool for analysing available information and highlighting what deserves attention.</p>
+<h2 id="2-what-does-an-ai-assisted-tpm-workflow-look-like">2. What does an AI-assisted TPM workflow look like?</h2>
+<p>A practical workflow can be broken down into six stages.</p>
+<h3 id="step-1-collect-the-relevant-information">Step 1: Collect the relevant information</h3>
+<p>Start with the sources the team already uses:</p>
+<ul>
+<li>Jira for issues, sprint progress, ownership and dependencies.</li>
+<li>Confluence for requirements, architecture decisions and project documentation.</li>
+<li>GitHub for pull requests, code changes and review status.</li>
+<li>Microsoft Teams or Slack for discussions, decisions and follow-up actions.</li>
+<li>CI/CD systems for build, test and deployment signals.</li>
+</ul>
+<p>Not every project needs every integration. Start with the sources that contain the information necessary to manage delivery.</p>
+<p>AI can only analyse information it can access, and its conclusions are only as reliable as that information.</p>
+<h3 id="step-2-ask-ai-to-analyse-not-merely-summarise">Step 2: Ask AI to analyse, not merely summarise</h3>
+<p>A summary tells you what happened. An analysis helps you understand what might happen next.</p>
+<p>For example, rather than asking:</p>
+<p><em>“Summarise the current sprint.”</em></p>
+<p>Ask:</p>
+<p><em>“Analyse the current sprint against its commitments. Identify overdue work, blocked issues, dependencies that could affect the release milestone, missing owners and decisions requiring escalation. Reference the relevant issue keys, distinguish confirmed facts from inferences, and list any information needed to validate your findings.”</em></p>
+<p>That second prompt gives the TPM something to investigate.</p>
+<p>AI might identify that a frontend integration depends on an overdue backend API. It might also flag that QA has no confirmed environment-readiness date.</p>
+<p>These are useful findings, but they are not automatically proof that the release will be delayed. The TPM must validate them with the people responsible.</p>
+<h3 id="step-3-turn-findings-into-delivery-risks">Step 3: Turn findings into delivery risks</h3>
+<p>Identifying a blocker is only the beginning. The next question is what that blocker means for delivery.</p>
+<p>Consider a B2B e-commerce project with a planned Friday release.</p>
+<p>The backend API is overdue, frontend integration is blocked, and QA is waiting for an environment to become available.</p>
+<p>An AI-assisted review could help the TPM establish:</p>
+<ul>
+<li><strong>Dependency:</strong> Frontend integration requires the backend API.</li>
+<li><strong>Potential impact:</strong> The delay may reduce the time available for integration testing.</li>
+<li><strong>Missing information:</strong> The backend lead has not confirmed a revised completion estimate.</li>
+<li><strong>Possible mitigation:</strong> Frontend development might continue against a mock API while the environment is prepared.</li>
+<li><strong>Decision required:</strong> The engineering team needs to assess whether the current release scope remains achievable.</li>
+</ul>
+<p>Notice the distinction between a risk candidate and a confirmed outcome. AI can help surface the former, but evidence and engineering judgment are needed to establish the latter.</p>
+<h3 id="step-4-use-ai-to-explore-options">Step 4: Use AI to explore options</h3>
+<p>Once the risk is understood, AI can help compare possible responses.</p>
+<p>For example:</p>
+<ul>
+<li>Can development proceed in parallel?</li>
+<li>Can a lower-priority feature be deferred?</li>
+<li>Can the team reduce scope without compromising essential functionality?</li>
+<li>What additional testing would be required if integration time were reduced?</li>
+<li>When must a decision be made to preserve the available options?</li>
+</ul>
+<p>The TPM should ask for the assumptions behind each scenario and challenge them with the technical leads.</p>
+<p>AI can structure the trade-offs, but it should not invent delivery estimates or make commitments on behalf of the team.</p>
+<h3 id="step-5-communicate-the-decision-clearly">Step 5: Communicate the decision clearly</h3>
+<p>Different stakeholders need different levels of detail.</p>
+<p>An engineering lead needs to understand the dependency, technical constraints and recovery options. An executive sponsor needs to understand the business impact, decisions required and consequences of inaction.</p>
+<p>AI can help turn validated findings into both technical updates and concise stakeholder reports.</p>
+<p>For example:</p>
+<p><em>“The Friday release is at risk because the backend API dependency remains unresolved. The team is assessing whether frontend integration can proceed in parallel and confirming QA environment readiness. We will review the impact on the release scope once the revised API estimate and recovery options have been validated.”</em></p>
+<p>This is more useful than reporting that three tickets are overdue. It explains why the situation matters and what happens next.</p>
+<h3 id="step-6-close-the-loop">Step 6: Close the loop</h3>
+<p>An AI-generated report is not a completed delivery activity.</p>
+<p>The TPM must ensure that agreed actions have owners, decisions are documented, relevant Jira records are updated and risks are reviewed as new information becomes available.</p>
+<p>The workflow should repeat as the project changes.</p>
+<p>Ultimately, the value of AI is not the number of reports it generates. It's whether the information helps the team resolve blockers, make decisions sooner and deliver more predictably.</p>
+<h2 id="3-which-ai-tools-belong-in-a-tpms-toolkit">3. Which AI tools belong in a TPM's toolkit?</h2>
+<p>The right tool depends on the team's existing environment, permissions, budget and workflow.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Potential TPM application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChatGPT</td>
+<td>Analyse supplied project data, challenge assumptions, draft reports and structure risk reviews.</td>
+</tr>
+<tr>
+<td>Atlassian Rovo</td>
+<td>Search and work with information across supported Atlassian tools; assist with issue and knowledge workflows.</td>
+</tr>
+<tr>
+<td>Microsoft 365 Copilot</td>
+<td>Support meeting recaps, action tracking and document-based work within supported Microsoft 365 workflows.</td>
+</tr>
+<tr>
+<td>GitHub Copilot</td>
+<td>Assist engineering teams with coding tasks and code-related workflows; help the TPM understand relevant changes when appropriate access is available.</td>
+</tr>
+<tr>
+<td>Workflow automation tools</td>
+<td>Connect approved events and actions across systems, reducing repetitive manual work.</td>
+</tr>
+</tbody>
+</table>
+<p>These tools serve different purposes. ChatGPT analysing an exported Jira report is not the same as an AI agent with authorised access to Jira that can retrieve current issues and perform actions.</p>
+<p>That distinction matters.</p>
+<p>Before choosing a tool, establish what data it can access, which actions it can perform, whether it retains context across workflows, and what safeguards exist around sensitive information.</p>
+<p>A TPM does not need an expensive collection of AI subscriptions to begin. A small workflow built around existing project data can be a sensible starting point.</p>
+<h2 id="4-where-ai-can-go-wrong">4. Where AI can go wrong</h2>
+<p>AI-assisted project management introduces its own risks.</p>
+<p><strong>Poor-quality data produces poor-quality analysis.</strong> If tickets are stale, dependencies are undocumented and estimates contradict one another, the AI may produce a convincing but inaccurate report.</p>
+<p><strong>A summary can hide uncertainty.</strong> A polished report may present an inferred dependency as a confirmed fact. Requiring source references and explicit uncertainty makes the analysis easier to verify.</p>
+<p><strong>Automation can spread mistakes faster.</strong> Automatically changing ticket statuses, assigning owners or communicating revised dates without appropriate checks can create more work than it saves.</p>
+<p><strong>Activity is not the same as progress.</strong> A high volume of completed AI-generated tasks does not necessarily mean that a business outcome has been achieved. Acceptance criteria, quality, integration and release readiness still matter.</p>
+<p><strong>Confidentiality cannot be an afterthought.</strong> Project data, customer information, source code and internal discussions must only be shared through tools and workflows approved for that information.</p>
+<p>The principle is straightforward: automate repetitive work where appropriate, but maintain human accountability for decisions, commitments and consequences.</p>
+<h2 id="5-how-to-start-without-overengineering-the-process">5. How to start without overengineering the process</h2>
+<p>The temptation is to build an autonomous agent that connects every system, updates every ticket and produces a dashboard.</p>
+<p>Resist that temptation.</p>
+<p>Start with one recurring problem that consumes time or causes avoidable delivery friction.</p>
+<p>For example, a TPM could build an AI-assisted sprint review using a synthetic Jira export or an authorised project-data extract.</p>
+<p>The first version could:</p>
+<ol>
+<li>Identify overdue and blocked issues.</li>
+<li>Flag missing owners and incomplete updates.</li>
+<li>Map documented dependencies.</li>
+<li>Draft a risk register and stakeholder report.</li>
+<li>Require human review before any project records are changed.</li>
+</ol>
+<p>Measure the time required to prepare the review, the proportion of findings that are accurate, the number of useful risks identified and whether agreed actions are resolved more quickly.</p>
+<p>Only after the workflow proves useful should you consider live integrations and automated actions.</p>
+<p>This approach makes it easier to identify what is genuinely valuable instead of automating a process simply because the technology allows it.</p>
+<h2 id="6-the-modern-tpms-real-advantage">6. The modern TPM's real advantage</h2>
+<p>AI does not remove the need for technical understanding, communication or sound judgment. In many ways, it makes those skills more important.</p>
+<p>A TPM who understands software architecture can better assess whether an identified dependency is meaningful. Someone who understands delivery processes can distinguish a genuine blocker from an administrative delay. Someone who understands stakeholder management can turn technical analysis into a decision that people can act on.</p>
+<p>The strongest AI-enabled TPM will not necessarily be the person using the most tools or building the most elaborate agents.</p>
+<p>It will be the person who knows which problem needs solving, which information matters, what the AI can reliably contribute, and where human judgment must take over.</p>
+<p><strong>The objective is not to make project management look more automated. It's to make software delivery better managed.</strong></p>
+<hr />
+    </div>
+    
+    
+  </div>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><strong>Karen Rumbie · Dev Notes</strong><p>Frontend lessons from years of trial and error, written so you can skip the trial.</p></div>
+      <div class="footer-links"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a><a href="/blog/posts/ai-in-practice/">ai-in-practice</a><a href="/blog/posts/github-pages-deploy-guide/">deploying-to-github-pages</a></div>
+    </div>
+    <div class="footer-copy">© 2026 Karen Rumbie</div>
+  </div>
+</footer>
+<script src="/blog/assets/blog.js" defer></script>
+</body>
+</html>
