@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Who&#x27;s Working on This Ticket? Introducing Your AI Teammate | Karen Rumbie</title>
+<meta name="description" content="Learn how to introduce an AI coding agent into your Jira workflow, define its responsibilities, manage permissions, and keep humans accountable for software delivery.">
+<meta property="og:title" content="Who&#x27;s Working on This Ticket? Introducing Your AI Teammate | Karen Rumbie">
+<meta property="og:description" content="Learn how to introduce an AI coding agent into your Jira workflow, define its responsibilities, manage permissions, and keep humans accountable for software delivery.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#7C9D96">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C9D96'/%3E%3Cpath d='m13 11-5 5 5 5M19 11l5 5-5 5' fill='none' stroke='%232C3E3B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/blog/"><span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span><span>Karen Rumbie<small>Engineering & Delivery</small></span></a>
+    <div class="header-actions">
+      <nav class="nav" aria-label="Main"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/" aria-current="page">Blog</a><a href="/blog/#series">Series</a></nav>
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-14.93 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<article>
+  <header class="post-head">
+    <div class="container"><div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true">/</span><a href="/blog/series/meet-your-new-ai-teammate-who-s-working-on-this-ticket/">Meet your new AI teammate: Who&#x27;s Working on This Ticket?</a></nav>
+      <h1>Who&#x27;s Working on This Ticket? Introducing Your AI Teammate</h1>
+      <div class="meta">
+        <span class="chip chip--accent"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Part 1 of 3</span>
+        <time datetime="2026-10-25">25 Oct 2026</time>
+        <span>·</span><span>4 min read</span>
+      </div>
+      <div class="tags" style="margin-top:.9rem"><span class="chip">technical-project-management</span><span class="chip">artificial-intelligence</span><span class="chip">jira</span><span class="chip">ai-agents</span><span class="chip">agile</span><span class="chip">software-delivery</span></div>
+    </div></div>
+  </header>
+  <div class="container">
+    <figure class="cover cover--contain" style="--thumb-bg:#f2edef;margin-bottom:2.25rem">
+      <img src="/blog/assets/img/ai-teammate-1.png" alt="An AI assistant joining a software delivery team, represented by a Jira-style task board and human team members" decoding="async"></figure>
+    <div class="prose">
+<h1 id="ai-as-a-team-member-a-tpms-guide-to-adding-an-ai-agent-to-jira">AI as a Team Member: A TPM's Guide to Adding an AI Agent to Jira</h1>
+<p>Artificial intelligence is changing how software teams work. But one of the most interesting developments isn't simply asking AI questions or using it to generate code. It's giving an AI agent a defined task and allowing it to participate in a team's delivery workflow.</p>
+<p>Imagine creating a Jira ticket, assigning it to an AI coding agent, and having that agent inspect a codebase, implement a change, run tests and open a pull request for review.</p>
+<p>This is possible with compatible AI agents and the right integrations. It isn't a standard capability of every Jira installation, however.</p>
+<p>So, how does a Technical Project Manager (TPM) make this work?</p>
+<h2 id="1-understand-what-an-ai-agent-is">1. Understand what an AI agent is</h2>
+<p>A chatbot responds to questions. An AI agent can go further: it can use connected tools to perform a sequence of actions towards a defined goal.</p>
+<p>Depending on its capabilities and permissions, an AI coding agent might:</p>
+<ul>
+<li>Read an assigned Jira ticket.</li>
+<li>Inspect relevant files in a GitHub repository.</li>
+<li>Implement a requested change.</li>
+<li>Run tests or other validation commands.</li>
+<li>Create commits and push a branch.</li>
+<li>Open a pull request for human review.</li>
+</ul>
+<p>The important distinction is that an agent's capabilities depend on its tools, integrations, environment and permissions. Connecting an AI assistant to Jira does not automatically give it access to GitHub or the ability to change code.</p>
+<h2 id="2-decide-what-role-the-agent-will-play">2. Decide what role the agent will play</h2>
+<p>Treat the agent like a team member with a defined responsibility, not an unrestricted developer.</p>
+<p>For example:</p>
+<p><strong>Role:</strong> AI coding assistant<br />
+<strong>Responsibilities:</strong> Implement small, well-defined development tasks, run available checks and report its findings.<br />
+<strong>Boundaries:</strong> It must not invent requirements, expand the agreed scope or merge its own changes into the main branch.</p>
+<p>The TPM remains responsible for ensuring the task is appropriate, the requirements are clear and the work follows the team's delivery process.</p>
+<h2 id="3-connect-the-tools">3. Connect the tools</h2>
+<p>A basic workflow involves three components:</p>
+<ul>
+<li><strong>Jira:</strong> Where the team defines, assigns and tracks work.</li>
+<li><strong>GitHub:</strong> Where the source code, branches, commits and pull requests live.</li>
+<li><strong>AI coding agent:</strong> The tool that interprets the task and performs the authorised work.</li>
+</ul>
+<p>One possible setup uses Jira with an appropriate coding-agent integration, GitHub for source control and a compatible agent such as GitHub Copilot coding agent.</p>
+<p>Other configurations may use Atlassian Rovo or a separate AI agent with the necessary integrations. The exact setup differs by product.</p>
+<p>The key question is: can the chosen agent read Jira issues, access the intended repository and perform the specific actions the team expects?</p>
+<p>Verify these capabilities before designing the workflow around them.</p>
+<h2 id="4-give-the-agent-only-the-access-it-needs">4. Give the agent only the access it needs</h2>
+<p>An AI agent should not automatically receive administrator access simply because it is part of the workflow.</p>
+<p>Depending on the integration, it may need permission to:</p>
+<ul>
+<li>Read the relevant Jira project and issues.</li>
+<li>Access a specific GitHub repository.</li>
+<li>Create a working branch or use an authorised existing branch.</li>
+<li>Commit and push changes.</li>
+<li>Open pull requests.</li>
+</ul>
+<p>Reading code, pushing changes, approving a pull request and merging it are separate capabilities. Configure and verify each one independently.</p>
+<p>Use the least privilege necessary, protect credentials and secrets, and follow the organisation's access policies.</p>
+<h2 id="5-establish-the-rules-before-assigning-work">5. Establish the rules before assigning work</h2>
+<p>The agent needs clear operating instructions.</p>
+<p>For example:</p>
+<ul>
+<li>Work only on the assigned Jira issue.</li>
+<li>Follow the stated acceptance criteria.</li>
+<li>Do not assume missing requirements.</li>
+<li>Ask for clarification when a decision would affect scope or behaviour.</li>
+<li>Do not expose credentials or modify secrets.</li>
+<li>Run the relevant tests and report any failures.</li>
+<li>Open a pull request with a summary of changes and validation results.</li>
+<li>Do not merge changes without the required human approval.</li>
+</ul>
+<p>These rules reduce ambiguity, but they do not guarantee correct behaviour. The team must still monitor the agent's output.</p>
+<h2 id="6-define-what-success-looks-like">6. Define what success looks like</h2>
+<p>A completed ticket should mean more than “the AI wrote some code.”</p>
+<p>The expected outcome might include:</p>
+<ul>
+<li>The requested change has been implemented.</li>
+<li>Acceptance criteria have been checked.</li>
+<li>Relevant automated tests have run.</li>
+<li>Known failures or limitations have been documented.</li>
+<li>A pull request is available for review.</li>
+<li>A human reviewer has assessed the changes.</li>
+</ul>
+<p>The TPM can then track the work through the same delivery process used for other team contributions.</p>
+<h2 id="the-takeaway">The takeaway</h2>
+<p>Adding an AI agent to Jira is not merely a configuration exercise. It is a delivery decision involving responsibilities, access, quality controls and accountability.</p>
+<p>The goal is not to remove humans from software development. It is to let AI handle appropriate execution tasks while humans retain control over requirements, technical decisions, risk and approval.</p>
+<p>In the next article, we'll follow the work from a Jira ticket to a GitHub pull request.</p>
+    </div>
+    <aside class="card series-box" aria-label="In this series">
+      <h2><span class="tile tile--terra"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></span> In this series: Meet your new AI teammate: Who&#x27;s Working on This Ticket?</h2>
+      <ol class="series-list"><li><span class="current" aria-current="page"><span class="n">1</span>Who&#x27;s Working on This Ticket? Introducing Your AI Teammate</span></li><li><a href="/blog/posts/ai-from-jira-to-github/"><span class="n">2</span>From Jira Ticket to GitHub Pull Request: Putting Your AI Teammate to Work</a></li><li><a href="/blog/posts/ai-practical-walthrough/"><span class="n">3</span>Assign It a Task. Can You Trust the Result? A Jira-to-GitHub Simulation</a></li></ol>
+    </aside>
+    <nav class="pager" aria-label="Series navigation"><a class="next" href="/blog/posts/ai-from-jira-to-github/"><small>Next · Part 2 →</small>From Jira Ticket to GitHub Pull Request: Putting Your AI Teammate to Work</a></nav>
+  </div>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><strong>Karen Rumbie · Engineering & Delivery</strong><p>Technical thinking, practical lessons, and better ways to build and deliver software.</p></div>
+      <div class="footer-links"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a><a href="/blog/series/meet-your-new-ai-teammate-who-s-working-on-this-ticket/">meet-your-new-ai-teammate-who-s-working-on-this-ticket</a><a href="/blog/posts/ai-in-practice/">The AI-Enabled TPM: </a><a href="/blog/posts/github-pages-deploy-guide/">deploying-to-github-pages</a></div>
+    </div>
+    <div class="footer-copy">© 2026 Karen Rumbie</div>
+  </div>
+</footer>
+<script src="/blog/assets/blog.js" defer></script>
+</body>
+</html>

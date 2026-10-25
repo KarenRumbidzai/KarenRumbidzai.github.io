@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assign It a Task. Can You Trust the Result? A Jira-to-GitHub Simulation | Karen Rumbie</title>
+<meta name="description" content="Follow a practical Jira-to-GitHub simulation showing how to assign an AI agent a task, write unambiguous prompts, handle missing requirements, review a pull request, and retain human approval.">
+<meta property="og:title" content="Assign It a Task. Can You Trust the Result? A Jira-to-GitHub Simulation | Karen Rumbie">
+<meta property="og:description" content="Follow a practical Jira-to-GitHub simulation showing how to assign an AI agent a task, write unambiguous prompts, handle missing requirements, review a pull request, and retain human approval.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#7C9D96">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C9D96'/%3E%3Cpath d='m13 11-5 5 5 5M19 11l5 5-5 5' fill='none' stroke='%232C3E3B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/blog/"><span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span><span>Karen Rumbie<small>Engineering & Delivery</small></span></a>
+    <div class="header-actions">
+      <nav class="nav" aria-label="Main"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/" aria-current="page">Blog</a><a href="/blog/#series">Series</a></nav>
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-14.93 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<article>
+  <header class="post-head">
+    <div class="container"><div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true">/</span><a href="/blog/series/meet-your-new-ai-teammate-who-s-working-on-this-ticket/">Meet your new AI teammate: Who&#x27;s Working on This Ticket?</a></nav>
+      <h1>Assign It a Task. Can You Trust the Result? A Jira-to-GitHub Simulation</h1>
+      <div class="meta">
+        <span class="chip chip--accent"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Part 3 of 3</span>
+        <time datetime="2026-10-25">25 Oct 2026</time>
+        <span>·</span><span>5 min read</span>
+      </div>
+      <div class="tags" style="margin-top:.9rem"><span class="chip">technical-project-management</span><span class="chip">artificial-intelligence</span><span class="chip">jira</span><span class="chip">github</span><span class="chip">ai-agents</span><span class="chip">prompt-engineering</span><span class="chip">code-review</span><span class="chip">software-quality</span></div>
+    </div></div>
+  </header>
+  <div class="container">
+    <figure class="cover cover--contain" style="--thumb-bg:#f2edef;margin-bottom:2.25rem">
+      <img src="/blog/assets/img/a-teammate-3.png" alt="A human technical project manager reviewing an AI-generated pull request before approving a software change" decoding="async"></figure>
+    <div class="prose">
+<h1 id="from-jira-to-github-giving-your-ai-agent-a-task">From Jira to GitHub: Giving Your AI Agent a Task</h1>
+<p>In the first article, we looked at what an AI coding agent can do and why it needs a clearly defined role.</p>
+<p>Now let's look at the workflow.</p>
+<p>The goal is straightforward: create a task in Jira, give the agent controlled access to the repository, let it work within an agreed scope, and review the result before anything reaches the main branch.</p>
+<h2 id="step-1-create-a-clear-jira-ticket">Step 1: Create a clear Jira ticket</h2>
+<p>Start with a task that is small enough to define, implement and test.</p>
+<p>A useful Jira ticket includes:</p>
+<ul>
+<li><strong>Summary:</strong> A short description of the required change.</li>
+<li><strong>Background:</strong> Why the change is needed.</li>
+<li><strong>Requirements:</strong> What the application should do.</li>
+<li><strong>Acceptance criteria:</strong> How the team will determine whether the task is complete.</li>
+<li><strong>Constraints:</strong> What must not change.</li>
+<li><strong>Testing expectations:</strong> What needs to be validated.</li>
+</ul>
+<p>Avoid tickets such as “Improve the dashboard” or “Fix the application.” They leave too much room for interpretation.</p>
+<h2 id="step-2-confirm-the-agent-can-access-the-repository">Step 2: Confirm the agent can access the repository</h2>
+<p>The agent needs access to the correct GitHub repository, including the files and development environment relevant to the task.</p>
+<p>Depending on the tool, this may require a GitHub App installation, an authorised service account or another supported connection.</p>
+<p>Confirm that:</p>
+<ul>
+<li>The correct repository is selected.</li>
+<li>The agent can read the required files.</li>
+<li>The necessary dependencies and test commands are available.</li>
+<li>The agent has only the permissions it needs.</li>
+<li>Secrets and production credentials are protected.</li>
+</ul>
+<p>Do not assume that linking Jira to GitHub automatically grants every required permission.</p>
+<h2 id="step-3-prepare-the-working-branch">Step 3: Prepare the working branch</h2>
+<p>A Git branch provides an isolated line of development for a change.</p>
+<p>For example, suppose the Jira ticket is <code>APP-142</code>.</p>
+<p>The TPM or technical lead might create a branch named:</p>
+<p><code>feature/APP-142-dashboard-validation</code></p>
+<p>The branch can then be made available to the agent if the selected tool supports working on an existing branch.</p>
+<p>Some coding agents create their own working branches instead. In that case, configure the workflow to use the correct repository and branch naming convention rather than assuming the agent can work on a pre-created branch.</p>
+<p>Before work begins, establish:</p>
+<ul>
+<li>Which repository the agent must use.</li>
+<li>Which branch it should work from or on.</li>
+<li>Which base branch the final pull request should target.</li>
+<li>Whether it is permitted to create commits and push changes.</li>
+</ul>
+<p>The main branch should remain protected.</p>
+<h2 id="step-4-give-the-agent-a-specific-task">Step 4: Give the agent a specific task</h2>
+<p>The Jira ticket is the source of the requirements. The prompt tells the agent how to execute the work.</p>
+<p>A useful prompt identifies the task, scope, constraints, expected checks and reporting requirements.</p>
+<p>For example:</p>
+<p>“You are working on Jira issue APP-142 in the authorised GitHub repository.</p>
+<p>Implement the dashboard form validation described in the ticket's acceptance criteria. Use the agreed working branch and follow the existing code conventions.</p>
+<p>Do not modify unrelated components, introduce new dependencies or change the API contract.</p>
+<p>Before making changes, inspect the relevant files and identify any missing information. Do not invent requirements or make assumptions about intended behaviour. If an ambiguity could affect the implementation, stop and ask for clarification.</p>
+<p>Run the relevant tests and report which checks passed or failed. Commit and push your changes only if authorised, then open a pull request against the designated base branch. Include a summary of the changes, tests performed, remaining issues and any assumptions that still require human confirmation.</p>
+<p>Do not merge the pull request.”</p>
+<p>Notice that the prompt does not merely say what to build. It defines how the agent should behave when the requirements are incomplete.</p>
+<h2 id="step-5-let-the-agent-execute-and-report">Step 5: Let the agent execute and report</h2>
+<p>Depending on the integration, the agent may read the ticket, inspect the repository, edit files, run commands and prepare a pull request.</p>
+<p>The TPM should monitor progress rather than assume that the agent's status updates prove the work is correct.</p>
+<p>Useful questions include:</p>
+<ul>
+<li>Is the agent working on the correct issue and branch?</li>
+<li>Has the scope changed?</li>
+<li>Did it encounter missing requirements?</li>
+<li>Did tests actually run?</li>
+<li>Were any tests skipped or unsuccessful?</li>
+<li>Is the pull request linked to the Jira issue?</li>
+</ul>
+<p>If the agent cannot continue safely because a requirement is ambiguous, the correct response is to clarify the requirement, not encourage it to guess.</p>
+<h2 id="step-6-review-the-pull-request">Step 6: Review the pull request</h2>
+<p>A pull request (PR) proposes changes to a codebase. It is not the same as merging those changes.</p>
+<p>The PR should include:</p>
+<ul>
+<li>A description of what changed.</li>
+<li>A reference to the Jira issue.</li>
+<li>Relevant test results.</li>
+<li>Known limitations.</li>
+<li>Any areas requiring additional review.</li>
+</ul>
+<p>The human reviewer checks whether the implementation meets the acceptance criteria, follows the architecture, handles edge cases and avoids unrelated changes.</p>
+<p>Automated checks are useful evidence, but passing tests do not guarantee that the implementation is correct.</p>
+<h2 id="step-7-merge-only-after-approval">Step 7: Merge only after approval</h2>
+<p>The team follows its normal review and merge process.</p>
+<p>The developer or authorised reviewer confirms technical correctness. Required checks and approvals must pass. The authorised human then approves and merges the changes according to repository policy.</p>
+<p>The agent may be able to open a PR, and some systems may technically permit it to merge. That does not mean the team should grant it that authority.</p>
+<p>For a controlled workflow, keep merge approval with an accountable human.</p>
+<h2 id="step-8-update-jira-and-close-the-loop">Step 8: Update Jira and close the loop</h2>
+<p>Once the work is reviewed and merged, update the Jira issue according to the team's workflow.</p>
+<p>Record the PR, review outcome, testing status and any remaining work. Close the ticket only when the team's definition of done has been satisfied.</p>
+<p>Remember that creating a PR, merging code and completing a Jira ticket are three different milestones.</p>
+<h2 id="what-have-we-learned">What have we learned?</h2>
+<p>The workflow is:</p>
+<p>Jira issue - authorised repository - working branch - implementation and tests - pull request - human review - authorised merge - Jira update.</p>
+<p>The agent contributes to execution. The TPM coordinates scope, progress, risks and dependencies. The developer or technical reviewer validates the implementation. The authorised human retains the final decision.</p>
+<p>In the final article, we'll walk through a simulated task and see what happens when the instructions are incomplete.</p>
+    </div>
+    <aside class="card series-box" aria-label="In this series">
+      <h2><span class="tile tile--terra"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></span> In this series: Meet your new AI teammate: Who&#x27;s Working on This Ticket?</h2>
+      <ol class="series-list"><li><a href="/blog/posts/ai-as-a-team-member/"><span class="n">1</span>Who&#x27;s Working on This Ticket? Introducing Your AI Teammate</a></li><li><a href="/blog/posts/ai-from-jira-to-github/"><span class="n">2</span>From Jira Ticket to GitHub Pull Request: Putting Your AI Teammate to Work</a></li><li><span class="current" aria-current="page"><span class="n">3</span>Assign It a Task. Can You Trust the Result? A Jira-to-GitHub Simulation</span></li></ol>
+    </aside>
+    <nav class="pager" aria-label="Series navigation"><a class="prev" href="/blog/posts/ai-from-jira-to-github/"><small>← Previous · Part 2</small>From Jira Ticket to GitHub Pull Request: Putting Your AI Teammate to Work</a></nav>
+  </div>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><strong>Karen Rumbie · Engineering & Delivery</strong><p>Technical thinking, practical lessons, and better ways to build and deliver software.</p></div>
+      <div class="footer-links"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a><a href="/blog/series/meet-your-new-ai-teammate-who-s-working-on-this-ticket/">meet-your-new-ai-teammate-who-s-working-on-this-ticket</a><a href="/blog/posts/ai-in-practice/">The AI-Enabled TPM: </a><a href="/blog/posts/github-pages-deploy-guide/">deploying-to-github-pages</a></div>
+    </div>
+    <div class="footer-copy">© 2026 Karen Rumbie</div>
+  </div>
+</footer>
+<script src="/blog/assets/blog.js" defer></script>
+</body>
+</html>
