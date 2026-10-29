@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI as a Teammate: Who&#x27;s Working on This Ticket? | Karen Rumbie</title>
+<meta name="description" content="An AI agent just picked up a Jira ticket. Now what? This three-part series shows how a TPM brings an AI coding agent onto a delivery team. Part 1 sets its role, access and house rules. Part 2 maps the journey from Jira ticket to GitHub pull request. Part 3 runs a worked example, including what happens when the ticket leaves a gap. The agent does the legwork. Humans keep the final say.">
+<meta property="og:title" content="AI as a Teammate: Who&#x27;s Working on This Ticket? | Karen Rumbie">
+<meta property="og:description" content="An AI agent just picked up a Jira ticket. Now what? This three-part series shows how a TPM brings an AI coding agent onto a delivery team. Part 1 sets its role, access and house rules. Part 2 maps the journey from Jira ticket to GitHub pull request. Part 3 runs a worked example, including what happens when the ticket leaves a gap. The agent does the legwork. Humans keep the final say.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#7C9D96">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C9D96'/%3E%3Cpath d='m13 11-5 5 5 5M19 11l5 5-5 5' fill='none' stroke='%232C3E3B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/blog/"><span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span><span>Karen Rumbie<small>Engineering & Delivery</small></span></a>
+    <div class="header-actions">
+      <nav class="nav" aria-label="Main"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/#series" aria-current="page">Series</a></nav>
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-14.93 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="page-head">
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true">/</span><span>Series</span></nav>
+    <h1>AI as a Teammate: Who&#x27;s Working on This Ticket?</h1>
+    <p class="lead">An AI agent just picked up a Jira ticket. Now what? This three-part series shows how a TPM brings an AI coding agent onto a delivery team. Part 1 sets its role, access and house rules. Part 2 maps the journey from Jira ticket to GitHub pull request. Part 3 runs a worked example, including what happens when the ticket leaves a gap. The agent does the legwork. Humans keep the final say.</p>
+    <div class="meta"><span class="chip chip--accent"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> 3 parts</span><span class="chip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 19 min total</span></div>
+    <div class="hero__cta"><a class="btn btn--accent" href="/blog/posts/ai-as-a-team-member/">Start with Part 1 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+  </div>
+</section>
+<section class="section">
+  <div class="container"><div class="parts">
+    <a class="card part" href="/blog/posts/ai-as-a-team-member/">
+      <div class="thumb thumb--contain" style="--thumb-bg:#f2edef"><img src="/blog/assets/img/ai-teammate-1.png" alt="An AI assistant joining a software delivery team, represented by a Jira-style task board and human team members" loading="lazy" decoding="async"></div>
+      <div>
+        <span class="part__num">Part 1</span>
+        <h2>Who&#x27;s Working on This Ticket? Introducing Your AI Teammate</h2>
+        <p>Before an AI coding agent picks up its first Jira ticket, give it a job description, the right access and a clear set of house rules. Here&#x27;s how a TPM sets that up.</p>
+        <div class="meta"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 6 min read</span></div>
+      </div>
+    </a>
+    <a class="card part" href="/blog/posts/ai-from-jira-to-github/">
+      <div class="thumb thumb--contain" style="--thumb-bg:#f2edef"><img src="/blog/assets/img/ai-teammate-2.png" alt="An AI coding agent working between a Jira task board and GitHub branches and pull requests" loading="lazy" decoding="async"></div>
+      <div>
+        <span class="part__num">Part 2</span>
+        <h2>From Jira Ticket to GitHub Pull Request: Putting Your AI Teammate to Work</h2>
+        <p>The eight-step workflow that takes a task from a Jira ticket to a reviewed, merged GitHub pull request, with the AI agent doing the legwork and humans making the calls.</p>
+        <div class="meta"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 6 min read</span></div>
+      </div>
+    </a>
+    <a class="card part" href="/blog/posts/ai-practical-walkthrough/">
+      <div class="thumb thumb--contain" style="--thumb-bg:#f2edef"><img src="/blog/assets/img/ai-teammate-3.png" alt="A human technical project manager reviewing an AI-generated pull request before approving a software change" loading="lazy" decoding="async"></div>
+      <div>
+        <span class="part__num">Part 3</span>
+        <h2>Assign It a Task. Can You Trust the Result? A Jira-to-GitHub Simulation</h2>
+        <p>A worked example: one real-looking Jira ticket, one AI agent, one pull request. See how the prompt is written, what the agent reports, what to do when the ticket has a gap, and how to judge whether the agent is really helping.</p>
+        <div class="meta"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 7 min read</span></div>
+      </div>
+    </a>
+  </div></div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><strong>Karen Rumbie · Engineering & Delivery</strong><p>Technical thinking, practical lessons, and better ways to build and deliver software.</p></div>
+      <div class="footer-links"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a><a href="/blog/series/ai-as-a-teammate/">AI as a Teammate: Who&#x27;s Working on This Ticket?</a><a href="/blog/posts/ai-in-practice/">The AI-Enabled TPM</a><a href="/blog/posts/github-pages-deploy-guide/">Deploying to GitHub Pages and Understanding the Jekyll Engine</a></div>
+    </div>
+    <div class="footer-copy">© 2026 Karen Rumbie</div>
+  </div>
+</footer>
+<script src="/blog/assets/blog.js" defer></script>
+</body>
+</html>

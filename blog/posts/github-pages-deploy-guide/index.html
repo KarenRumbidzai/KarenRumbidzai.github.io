@@ -3,24 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>&quot;From Localhost to Live: Deploying to GitHub Pages (and the Jekyll Engine Hiding Inside It) | Karen Rumbie</title>
-<meta name="description" content="101 on how to deploy to github pages. Exploring and understanding the Jekyll engine within github pages">
-<meta property="og:title" content="&quot;From Localhost to Live: Deploying to GitHub Pages (and the Jekyll Engine Hiding Inside It) | Karen Rumbie">
-<meta property="og:description" content="101 on how to deploy to github pages. Exploring and understanding the Jekyll engine within github pages">
+<title>From Localhost to Live: Deploying to GitHub Pages (and the Jekyll Engine Hiding Inside It) | Karen Rumbie</title>
+<meta name="description" content="A beginner-friendly guide to deploying your site to GitHub Pages, and understanding the Jekyll engine that runs inside it.">
+<meta property="og:title" content="From Localhost to Live: Deploying to GitHub Pages (and the Jekyll Engine Hiding Inside It) | Karen Rumbie">
+<meta property="og:description" content="A beginner-friendly guide to deploying your site to GitHub Pages, and understanding the Jekyll engine that runs inside it.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#7C9D96">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C9D96'/%3E%3Cpath d='m13 11-5 5 5 5M19 11l5 5-5 5' fill='none' stroke='%232C3E3B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="/blog/assets/blog.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container">
-    <a class="brand" href="/blog/"><span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span><span>Karen Rumbie<small>Dev Notes</small></span></a>
-    <nav class="nav" aria-label="Main"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/" aria-current="page">Blog</a><a href="/blog/#series">Series</a></nav>
+    <a class="brand" href="/blog/"><span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span><span>Karen Rumbie<small>Engineering & Delivery</small></span></a>
+    <div class="header-actions">
+      <nav class="nav" aria-label="Main"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/" aria-current="page">Blog</a><a href="/blog/#series">Series</a></nav>
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-14.93 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 <main id="main">
@@ -28,8 +35,8 @@
 <article>
   <header class="post-head">
     <div class="container"><div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true">/</span><span>Deploying to github pages</span></nav>
-      <h1>&quot;From Localhost to Live: Deploying to GitHub Pages (and the Jekyll Engine Hiding Inside It)</h1>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true">/</span><span>Deploying to GitHub Pages and Understanding the Jekyll Engine</span></nav>
+      <h1>From Localhost to Live: Deploying to GitHub Pages (and the Jekyll Engine Hiding Inside It)</h1>
       <div class="meta">
         
         <time datetime="2026-10-06">6 Oct 2026</time>
@@ -40,7 +47,7 @@
   </header>
   <div class="container">
     <figure class="cover cover--frame" style="--thumb-bg:#2C3E3B;margin-bottom:2.25rem">
-      <img src="/blog/assets/img/deploy_githubPages.jpg" alt="How to deploy to github pages for free" decoding="async"></figure>
+      <img src="/blog/assets/img/deploy_githubPages.jpg" alt="How to deploy to GitHub Pages for free" decoding="async"></figure>
     <div class="prose">
 <p>You built a site on your machine. It works. Now you want a real URL, for free, without renting a server or touching cPanel.</p>
 <p>GitHub Pages does exactly that. This article covers how it works, the Jekyll engine built into it, and the exact steps to get your local code live in about five minutes.</p>
@@ -177,8 +184,8 @@ git push
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div><strong>Karen Rumbie · Dev Notes</strong><p>Frontend lessons from years of trial and error, written so you can skip the trial.</p></div>
-      <div class="footer-links"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a><a href="/blog/posts/github-pages-deploy-guide/">deploying-to-github-pages</a></div>
+      <div><strong>Karen Rumbie · Engineering & Delivery</strong><p>Technical thinking, practical lessons, and better ways to build and deliver software.</p></div>
+      <div class="footer-links"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a><a href="/blog/series/ai-as-a-teammate/">AI as a Teammate: Who&#x27;s Working on This Ticket?</a><a href="/blog/posts/ai-in-practice/">The AI-Enabled TPM</a><a href="/blog/posts/github-pages-deploy-guide/">Deploying to GitHub Pages and Understanding the Jekyll Engine</a></div>
     </div>
     <div class="footer-copy">© 2026 Karen Rumbie</div>
   </div>

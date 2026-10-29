@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assign It a Task. Can You Trust the Result? A Jira-to-GitHub Simulation | Karen Rumbie</title>
+<meta name="description" content="A worked example: one real-looking Jira ticket, one AI agent, one pull request. See how the prompt is written, what the agent reports, what to do when the ticket has a gap, and how to judge whether the agent is really helping.">
+<meta property="og:title" content="Assign It a Task. Can You Trust the Result? A Jira-to-GitHub Simulation | Karen Rumbie">
+<meta property="og:description" content="A worked example: one real-looking Jira ticket, one AI agent, one pull request. See how the prompt is written, what the agent reports, what to do when the ticket has a gap, and how to judge whether the agent is really helping.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#7C9D96">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C9D96'/%3E%3Cpath d='m13 11-5 5 5 5M19 11l5 5-5 5' fill='none' stroke='%232C3E3B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/blog/"><span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span><span>Karen Rumbie<small>Engineering & Delivery</small></span></a>
+    <div class="header-actions">
+      <nav class="nav" aria-label="Main"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/" aria-current="page">Blog</a><a href="/blog/#series">Series</a></nav>
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-14.93 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<article>
+  <header class="post-head">
+    <div class="container"><div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true">/</span><a href="/blog/series/ai-as-a-teammate/">AI as a Teammate: Who&#x27;s Working on This Ticket?</a></nav>
+      <h1>Assign It a Task. Can You Trust the Result? A Jira-to-GitHub Simulation</h1>
+      <div class="meta">
+        <span class="chip chip--accent"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Part 3 of 3</span>
+        <time datetime="2026-10-25">25 Oct 2026</time>
+        <span>·</span><span>7 min read</span>
+      </div>
+      <div class="tags" style="margin-top:.9rem"><span class="chip">technical-project-management</span><span class="chip">artificial-intelligence</span><span class="chip">jira</span><span class="chip">github</span><span class="chip">ai-agents</span><span class="chip">prompt-engineering</span><span class="chip">code-review</span><span class="chip">software-quality</span></div>
+    </div></div>
+  </header>
+  <div class="container">
+    <figure class="cover cover--contain" style="--thumb-bg:#f2edef;margin-bottom:2.25rem">
+      <img src="/blog/assets/img/ai-teammate-3.png" alt="A human technical project manager reviewing an AI-generated pull request before approving a software change" decoding="async"></figure>
+    <div class="prose">
+<p><a href="/blog/posts/ai-as-a-team-member/">Part 1</a> set the ground rules. <a href="/blog/posts/ai-from-jira-to-github/">Part 2</a> mapped the workflow. Now let's run one ticket all the way through it and see where things can go wrong.</p>
+<p><strong>The scenario:</strong> a team maintains a web application. A user reports that the notification settings form on the dashboard accepts an invalid email address. It's small, well-contained and easy to test, so the TPM decides it's a good first task for the AI agent.</p>
+<p>The aim isn't to hand development over to AI. It's to delegate one well-defined piece of work and stay in control of the outcome.</p>
+<div class="callout callout--note">
+<p><strong>This is a simulation.</strong> The agent's output below is illustrative, not a recording of a real run. Exact screens and permissions depend on the tools you use.</p>
+</div>
+<h2 id="the-ticket">🎫 The ticket</h2>
+<div class="ticket">
+<p class="ticket__head"><span class="ticket__key">APP-142</span> Validate the dashboard notification email field <span class="ticket__status">To do</span></p>
+<p><strong>Background:</strong> Users can currently save an invalid email address in the notification settings form.</p>
+<p><strong>Acceptance criteria</strong></p>
+<ol>
+<li>The form rejects an empty email address.</li>
+<li>The form rejects an email address that fails the application's existing validation rules.</li>
+<li>A clear validation message appears when the input is invalid.</li>
+<li>A valid email address can be submitted.</li>
+<li>Nothing else about the form changes.</li>
+</ol>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>Use the existing validation patterns.</li>
+<li>Don't change the backend API contract.</li>
+<li>Don't add a new dependency.</li>
+<li>Don't touch unrelated components.</li>
+</ul>
+</div>
+<p>Notice that the criteria describe the <em>result</em> without dictating every line of code.</p>
+<h2 id="the-branch">🌿 The branch</h2>
+<p>The TPM and the technical lead agree on the repository and the branch, <code>feature/APP-142-dashboard-validation</code>, targeting <code>main</code>. The agent can read the repository, commit, push and open a PR. It has no access to production systems or secrets, because it doesn't need them for this task.</p>
+<h2 id="the-prompt">💬 The prompt</h2>
+<p>The TPM assigns APP-142 to the agent (or starts the task through the agent's own workflow) with these instructions:</p>
+<pre><code class="language-prompt">You are assigned Jira issue APP-142.
+
+Read the issue and its acceptance criteria before making any changes. Work in
+the authorised repository on feature/APP-142-dashboard-validation, and follow
+the existing code conventions.
+
+First, look at the current dashboard notification form and find out how
+validation is done elsewhere in the application.
+
+Implement only the validation described in APP-142. Reuse the existing
+validation approach where it fits. Don't add dependencies, change the API
+contract or modify unrelated files.
+
+Don't guess how the application should behave if the requirements are missing
+or contradictory. If the ticket and the existing code don't tell you the
+intended behaviour, stop and ask the TPM before you build that part.
+
+Run the relevant tests. Report the commands you ran, their actual results, and
+any checks you couldn't complete. Don't say a test passed unless you ran it
+and it passed.
+
+If authorised, commit, push and open a pull request against main. Link it to
+APP-142 and describe the changes, test results, risks and open questions.
+
+Don't approve or merge your own changes. Wait for a human to review them.
+</code></pre>
+<details class="step">
+<summary>🔎 Why each part of the prompt is there</summary>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>What it prevents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Read the issue … before making any changes"</td>
+<td>Jumping straight into code with half the context.</td>
+</tr>
+<tr>
+<td>"Find out how validation is done elsewhere"</td>
+<td>Reinventing a pattern the codebase already has.</td>
+</tr>
+<tr>
+<td>"Implement only the validation described"</td>
+<td>Scope creep.</td>
+</tr>
+<tr>
+<td>"Stop and ask the TPM"</td>
+<td>Silently invented requirements.</td>
+</tr>
+<tr>
+<td>"Don't say a test passed unless you ran it"</td>
+<td>Confident reports with no evidence behind them.</td>
+</tr>
+<tr>
+<td>"Don't approve or merge your own changes"</td>
+<td>Skipping human review.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2 id="what-the-agent-reports-back">⚙️ What the agent reports back</h2>
+<p>The agent explores the repository and finds the app already has a shared validation utility. It locates the form component and its tests, then makes a small change using the existing pattern. Its progress report looks something like this:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Report</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🛠️ <strong>Change</strong></td>
+<td>Added validation to the notification email field.</td>
+</tr>
+<tr>
+<td>📏 <strong>Scope</strong></td>
+<td>Edited the form component and its tests. Nothing else.</td>
+</tr>
+<tr>
+<td>🧪 <strong>Tests</strong></td>
+<td>Ran the existing suite and the new validation tests. Actual results are in the PR.</td>
+</tr>
+<tr>
+<td>⚠️ <strong>Limitations</strong></td>
+<td>The full integration suite couldn't run because a required service was down.</td>
+</tr>
+<tr>
+<td>❓ <strong>Open questions</strong></td>
+<td>None. (Or a specific question, if anything was still unclear.)</td>
+</tr>
+</tbody>
+</table>
+<p>That limitations line matters most. A useful agent tells you what it <em>couldn't</em> do, not just "done ✅".</p>
+<h2 id="the-twist-what-if-the-ticket-has-a-gap">⚠️ The twist: what if the ticket has a gap?</h2>
+<p>Now imagine the ticket only said "reject invalid email addresses", with no mention of <em>which</em> rules to use.</p>
+<p>The agent might fill that gap on its own: pull in a new validation library, or write a stricter rule than the one used everywhere else. The code might even look perfectly reasonable. <strong>That's exactly the risk.</strong></p>
+<blockquote>
+<p><strong>The rule:</strong> if an assumption could change functionality, security, scope or user experience, the agent must raise it, not quietly decide it.</p>
+</blockquote>
+<details class="step">
+<summary>🧭 What the TPM does next</summary>
+<ul>
+<li><strong>Don't approve it just because it looks fine.</strong> Reasonable-looking code can still be the wrong behaviour.</li>
+<li><strong>Ask the technical lead</strong> to confirm which validation rules are intended.</li>
+<li><strong>Or point the agent at the existing pattern</strong> and ask it to follow that, as long as the pattern genuinely answers the question.</li>
+<li><strong>Let unrelated work carry on.</strong> Not every question has to stop everything. If the tool and task allow it, the agent can keep going on the clearly defined parts while it flags the blocker. It just mustn't invent an answer for the unclear part.</li>
+</ul>
+</details>
+<h2 id="reviewing-the-pull-request">🔍 Reviewing the pull request</h2>
+<p>The agent opens the PR, and a developer or authorised reviewer works through it:</p>
+<div class="checklist checklist--ask">
+<ul>
+<li>Does it meet all five acceptance criteria?</li>
+<li>Does it reuse the existing validation approach?</li>
+<li>Is the change limited to the agreed scope?</li>
+<li>Do the tests cover both valid and invalid input?</li>
+<li>Were the tests actually run, and what were the results?</li>
+<li>Could it cause regressions or accessibility problems?</li>
+<li>Are there any unreported assumptions or security concerns?</li>
+</ul>
+</div>
+<p>If something's wrong, the reviewer requests changes. The agent can make specific fixes, but the updated code gets reviewed again.</p>
+<div class="callout callout--tip">
+<p><strong>A PR is a proposal, not proof that the code is correct.</strong></p>
+</div>
+<h2 id="merge-and-close">✅ Merge and close</h2>
+<p>Once the reviewer is happy, the required checks and approvals pass and the repository's rules are met, an authorised person merges the PR. The team then updates APP-142 with the PR link, the review status, the test evidence and any follow-up work, and closes the ticket once the definition of done is met.</p>
+<h2 id="is-the-agent-actually-helping">📊 Is the agent actually helping?</h2>
+<p>Don't measure an AI agent by how much code it writes. Measure what it does for delivery:</p>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>What it tells you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⏱️ Time from assignment to a PR ready for review</td>
+<td>Is it speeding things up?</td>
+</tr>
+<tr>
+<td>♻️ Share of tasks accepted without major rework</td>
+<td>Is the output usable?</td>
+</tr>
+<tr>
+<td>🐞 Defects or regressions introduced</td>
+<td>Is it safe?</td>
+</tr>
+<tr>
+<td>🧪 Test and build pass rates</td>
+<td>Is it working to your standards?</td>
+</tr>
+<tr>
+<td>🔍 Time spent reviewing and fixing its work</td>
+<td>Is the review cost worth it?</td>
+</tr>
+<tr>
+<td>🚧 Tasks blocked by unclear requirements or missing access</td>
+<td>Are your tickets and setup good enough?</td>
+</tr>
+</tbody>
+</table>
+<p>If the agent writes code fast but creates a pile of review work or bugs, it isn't really helping delivery.</p>
+<div class="callout callout--tip">
+<p><strong>Start small.</strong> Give it low-risk tasks, look at the results, and only widen its responsibilities when the numbers back it up.</p>
+</div>
+<h2 id="wrapping-up-the-series">Wrapping up the series</h2>
+<p>An AI coding agent can take a team from a Jira ticket to a proposed code change. With the right tools and permissions, it can explore a repository, build what's been defined and prepare a pull request.</p>
+<p>What it can't be trusted to do on its own is understand the business context, read every vague requirement correctly or spot every technical risk. So the responsibilities stay where they belong: the <strong>TPM</strong> owns the delivery process, the <strong>reviewer</strong> checks the implementation, and an <strong>authorised human</strong> makes the final call.</p>
+<blockquote>
+<p>This isn't about autonomous development at any cost. It's about controlled delegation, measurable results and better use of your team's time.</p>
+</blockquote>
+<p>Do that, and your AI agent becomes a genuinely useful teammate rather than another source of unmanaged risk.</p>
+<details class="step">
+<summary>🗒️ The whole series on one page: your starter checklist</summary>
+<div class="checklist">
+<ul>
+<li><strong>Part 1:</strong> The agent has a written role, least-privilege access and house rules.</li>
+<li><strong>Part 1:</strong> The team agrees on what "done" means.</li>
+<li><strong>Part 2:</strong> Tickets have clear acceptance criteria and constraints.</li>
+<li><strong>Part 2:</strong> Repository, branch and base branch are confirmed, and <code>main</code> is protected.</li>
+<li><strong>Part 2:</strong> The prompt covers task, scope, what to do when unsure, evidence and approval.</li>
+<li><strong>Part 3:</strong> Assumptions get raised, not buried.</li>
+<li><strong>Part 3:</strong> A human reviews and merges every PR.</li>
+<li><strong>Part 3:</strong> You track outcomes, not lines of code.</li>
+</ul>
+</div>
+</details>
+    </div>
+    <aside class="card series-box" aria-label="In this series">
+      <h2><span class="tile tile--terra"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></span> In this series: AI as a Teammate: Who&#x27;s Working on This Ticket?</h2>
+      <ol class="series-list"><li><a href="/blog/posts/ai-as-a-team-member/"><span class="n">1</span>Who&#x27;s Working on This Ticket? Introducing Your AI Teammate</a></li><li><a href="/blog/posts/ai-from-jira-to-github/"><span class="n">2</span>From Jira Ticket to GitHub Pull Request: Putting Your AI Teammate to Work</a></li><li><span class="current" aria-current="page"><span class="n">3</span>Assign It a Task. Can You Trust the Result? A Jira-to-GitHub Simulation</span></li></ol>
+    </aside>
+    <nav class="pager" aria-label="Series navigation"><a class="prev" href="/blog/posts/ai-from-jira-to-github/"><small>← Previous · Part 2</small>From Jira Ticket to GitHub Pull Request: Putting Your AI Teammate to Work</a></nav>
+  </div>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><strong>Karen Rumbie · Engineering & Delivery</strong><p>Technical thinking, practical lessons, and better ways to build and deliver software.</p></div>
+      <div class="footer-links"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a><a href="/blog/series/ai-as-a-teammate/">AI as a Teammate: Who&#x27;s Working on This Ticket?</a><a href="/blog/posts/ai-in-practice/">The AI-Enabled TPM</a><a href="/blog/posts/github-pages-deploy-guide/">Deploying to GitHub Pages and Understanding the Jekyll Engine</a></div>
+    </div>
+    <div class="footer-copy">© 2026 Karen Rumbie</div>
+  </div>
+</footer>
+<script src="/blog/assets/blog.js" defer></script>
+</body>
+</html>

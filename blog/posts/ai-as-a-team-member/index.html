@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Who&#x27;s Working on This Ticket? Introducing Your AI Teammate | Karen Rumbie</title>
-<meta name="description" content="Learn how to introduce an AI coding agent into your Jira workflow, define its responsibilities, manage permissions, and keep humans accountable for software delivery.">
+<meta name="description" content="Before an AI coding agent picks up its first Jira ticket, give it a job description, the right access and a clear set of house rules. Here&#x27;s how a TPM sets that up.">
 <meta property="og:title" content="Who&#x27;s Working on This Ticket? Introducing Your AI Teammate | Karen Rumbie">
-<meta property="og:description" content="Learn how to introduce an AI coding agent into your Jira workflow, define its responsibilities, manage permissions, and keep humans accountable for software delivery.">
+<meta property="og:description" content="Before an AI coding agent picks up its first Jira ticket, give it a job description, the right access and a clear set of house rules. Here&#x27;s how a TPM sets that up.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#7C9D96">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C9D96'/%3E%3Cpath d='m13 11-5 5 5 5M19 11l5 5-5 5' fill='none' stroke='%232C3E3B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
@@ -35,12 +35,12 @@
 <article>
   <header class="post-head">
     <div class="container"><div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true">/</span><a href="/blog/series/meet-your-new-ai-teammate-who-s-working-on-this-ticket/">Meet your new AI teammate: Who&#x27;s Working on This Ticket?</a></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span aria-hidden="true">/</span><a href="/blog/series/ai-as-a-teammate/">AI as a Teammate: Who&#x27;s Working on This Ticket?</a></nav>
       <h1>Who&#x27;s Working on This Ticket? Introducing Your AI Teammate</h1>
       <div class="meta">
         <span class="chip chip--accent"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Part 1 of 3</span>
         <time datetime="2026-10-25">25 Oct 2026</time>
-        <span>·</span><span>4 min read</span>
+        <span>·</span><span>6 min read</span>
       </div>
       <div class="tags" style="margin-top:.9rem"><span class="chip">technical-project-management</span><span class="chip">artificial-intelligence</span><span class="chip">jira</span><span class="chip">ai-agents</span><span class="chip">agile</span><span class="chip">software-delivery</span></div>
     </div></div>
@@ -49,87 +49,175 @@
     <figure class="cover cover--contain" style="--thumb-bg:#f2edef;margin-bottom:2.25rem">
       <img src="/blog/assets/img/ai-teammate-1.png" alt="An AI assistant joining a software delivery team, represented by a Jira-style task board and human team members" decoding="async"></figure>
     <div class="prose">
-<h1 id="ai-as-a-team-member-a-tpms-guide-to-adding-an-ai-agent-to-jira">AI as a Team Member: A TPM's Guide to Adding an AI Agent to Jira</h1>
-<p>Artificial intelligence is changing how software teams work. But one of the most interesting developments isn't simply asking AI questions or using it to generate code. It's giving an AI agent a defined task and allowing it to participate in a team's delivery workflow.</p>
-<p>Imagine creating a Jira ticket, assigning it to an AI coding agent, and having that agent inspect a codebase, implement a change, run tests and open a pull request for review.</p>
-<p>This is possible with compatible AI agents and the right integrations. It isn't a standard capability of every Jira installation, however.</p>
-<p>So, how does a Technical Project Manager (TPM) make this work?</p>
-<h2 id="1-understand-what-an-ai-agent-is">1. Understand what an AI agent is</h2>
-<p>A chatbot responds to questions. An AI agent can go further: it can use connected tools to perform a sequence of actions towards a defined goal.</p>
-<p>Depending on its capabilities and permissions, an AI coding agent might:</p>
+<p>It's stand-up. Someone asks, <em>"Who's picking up APP-142?"</em> and the answer is: <strong>the AI agent.</strong></p>
+<p>That's no longer science fiction. With the right integrations, you can assign a Jira ticket to an AI coding agent and it will read the ticket, look through the code, make the change, run the tests and open a pull request for someone to review.</p>
+<p>But it doesn't come out of the box with every Jira setup, and it doesn't run itself. Someone has to decide what the agent is allowed to do, and what it must never do. That someone is usually the Technical Project Manager (TPM).</p>
+<div class="lead-box">
+<p><strong>In this part</strong></p>
+<p>🤖 What an AI agent actually is &nbsp;·&nbsp; 🪪 Its job description &nbsp;·&nbsp; 🔌 The three tools you connect &nbsp;·&nbsp; 🔐 How much access to give it &nbsp;·&nbsp; 📜 House rules &nbsp;·&nbsp; 🏁 What "done" means</p>
+</div>
+<h2 id="a-chatbot-answers-an-agent-acts">🤖 A chatbot answers. An agent acts.</h2>
+<p>A chatbot replies to your questions. An <strong>agent</strong> uses connected tools to carry out a series of steps towards a goal.</p>
+<p>Given the right tools and permissions, an AI coding agent can:</p>
+<div class="checklist">
 <ul>
-<li>Read an assigned Jira ticket.</li>
-<li>Inspect relevant files in a GitHub repository.</li>
-<li>Implement a requested change.</li>
-<li>Run tests or other validation commands.</li>
-<li>Create commits and push a branch.</li>
-<li>Open a pull request for human review.</li>
+<li>Read the Jira ticket assigned to it.</li>
+<li>Look through the relevant files in a GitHub repository.</li>
+<li>Make the requested change.</li>
+<li>Run tests and other checks.</li>
+<li>Commit the work and push a branch.</li>
+<li>Open a pull request for a human to review.</li>
 </ul>
-<p>The important distinction is that an agent's capabilities depend on its tools, integrations, environment and permissions. Connecting an AI assistant to Jira does not automatically give it access to GitHub or the ability to change code.</p>
-<h2 id="2-decide-what-role-the-agent-will-play">2. Decide what role the agent will play</h2>
-<p>Treat the agent like a team member with a defined responsibility, not an unrestricted developer.</p>
-<p>For example:</p>
-<p><strong>Role:</strong> AI coding assistant<br />
-<strong>Responsibilities:</strong> Implement small, well-defined development tasks, run available checks and report its findings.<br />
-<strong>Boundaries:</strong> It must not invent requirements, expand the agreed scope or merge its own changes into the main branch.</p>
-<p>The TPM remains responsible for ensuring the task is appropriate, the requirements are clear and the work follows the team's delivery process.</p>
-<h2 id="3-connect-the-tools">3. Connect the tools</h2>
-<p>A basic workflow involves three components:</p>
+</div>
+<div class="callout callout--note">
+<p><strong>What it can do depends on what you connect.</strong> Linking an AI assistant to Jira doesn't give it access to GitHub, and it doesn't let it change code. Every capability comes from a specific tool, integration or permission.</p>
+</div>
+<h2 id="give-it-a-job-description">🪪 Give it a job description</h2>
+<p>Treat the agent like a new team member with a clear role, not a developer with the keys to everything.</p>
+<ul class="tool-grid">
+  <li class="tool-card tool-card--sage">
+    <span class="tool-card__tag">Role</span>
+    <span class="tool-card__icon">🤖</span>
+    <h3>AI coding assistant</h3>
+    <p>Picks up small, well-defined development tasks.</p>
+  </li>
+  <li class="tool-card tool-card--moss">
+    <span class="tool-card__tag">Does</span>
+    <span class="tool-card__icon">🛠️</span>
+    <h3>Builds, checks, reports</h3>
+    <p>Makes the change, runs the available checks and tells you what it found.</p>
+  </li>
+  <li class="tool-card tool-card--terra">
+    <span class="tool-card__tag">Never</span>
+    <span class="tool-card__icon">🚫</span>
+    <h3>Invents, expands or merges</h3>
+    <p>It doesn't make up requirements, quietly grow the scope or merge its own work into the main branch.</p>
+  </li>
+</ul>
+
+<p>The TPM's job doesn't go away. You still make sure the task suits the agent, the requirements are clear and the work goes through the team's normal delivery process.</p>
+<h2 id="connect-the-three-tools">🔌 Connect the three tools</h2>
+<p>A basic setup has three parts:</p>
+<ul class="tool-grid">
+  <li class="tool-card tool-card--sage">
+    <span class="tool-card__icon">🗂️</span>
+    <p class="tool-card__label">Plan</p>
+    <h3>Jira</h3>
+    <p>Where the team writes, assigns and tracks the work.</p>
+  </li>
+  <li class="tool-card tool-card--moss">
+    <span class="tool-card__icon">🐙</span>
+    <p class="tool-card__label">Build</p>
+    <h3>GitHub</h3>
+    <p>Where the code, branches, commits and pull requests live.</p>
+  </li>
+  <li class="tool-card tool-card--terra">
+    <span class="tool-card__icon">🤖</span>
+    <p class="tool-card__label">Do</p>
+    <h3>The AI coding agent</h3>
+    <p>Reads the task and does the work it's been authorised to do.</p>
+  </li>
+</ul>
+
+<details class="step">
+<summary>🧩 Which tools can actually do this?</summary>
+<p>There's no single standard setup. A few common options:</p>
 <ul>
-<li><strong>Jira:</strong> Where the team defines, assigns and tracks work.</li>
-<li><strong>GitHub:</strong> Where the source code, branches, commits and pull requests live.</li>
-<li><strong>AI coding agent:</strong> The tool that interprets the task and performs the authorised work.</li>
+<li><strong>Jira + GitHub Copilot coding agent</strong>, connected through a supported coding-agent integration.</li>
+<li><strong>Atlassian Rovo</strong>, Atlassian's own AI, where your plan and configuration support it.</li>
+<li><strong>Another AI agent</strong> that has the integrations it needs for Jira and GitHub.</li>
 </ul>
-<p>One possible setup uses Jira with an appropriate coding-agent integration, GitHub for source control and a compatible agent such as GitHub Copilot coding agent.</p>
-<p>Other configurations may use Atlassian Rovo or a separate AI agent with the necessary integrations. The exact setup differs by product.</p>
-<p>The key question is: can the chosen agent read Jira issues, access the intended repository and perform the specific actions the team expects?</p>
-<p>Verify these capabilities before designing the workflow around them.</p>
-<h2 id="4-give-the-agent-only-the-access-it-needs">4. Give the agent only the access it needs</h2>
-<p>An AI agent should not automatically receive administrator access simply because it is part of the workflow.</p>
-<p>Depending on the integration, it may need permission to:</p>
+<p>Products change quickly, so check each vendor's documentation for what's supported today.</p>
+</details>
+<div class="callout callout--tip">
+<p><strong>One question to answer before anything else:</strong> can this agent read Jira issues, reach the right repository, <em>and</em> carry out the specific actions you expect? Test each one before you design your workflow around it.</p>
+</div>
+<h2 id="give-it-only-the-access-it-needs">🔐 Give it only the access it needs</h2>
+<p>Being part of the workflow doesn't mean the agent gets admin rights. Reading code, pushing changes, approving a pull request and merging it are all separate permissions. Set up and test each one on its own.</p>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Give it?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📖 Read the relevant Jira project and issues</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>📂 Access one specific GitHub repository</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>🌿 Create a working branch, or use one you've approved</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>📤 Commit and push changes</td>
+<td>✅ If authorised</td>
+</tr>
+<tr>
+<td>🔀 Open pull requests</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>👍 Approve pull requests</td>
+<td>❌ No, that's for a human</td>
+</tr>
+<tr>
+<td>🚀 Merge into the main branch</td>
+<td>❌ No, that's for a human</td>
+</tr>
+<tr>
+<td>🔑 Production systems and secrets</td>
+<td>❌ No</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout--warn">
+<p>Start with the <strong>least privilege</strong> that gets the job done. Keep credentials and secrets out of reach, and follow your organisation's access policies.</p>
+</div>
+<h2 id="set-the-house-rules-before-the-first-ticket">📜 Set the house rules before the first ticket</h2>
+<p>The agent needs clear operating instructions. Write them once, and include them with every task:</p>
+<pre><code class="language-prompt">House rules for the AI coding agent
+
+- Work only on the Jira issue assigned to you.
+- Follow the acceptance criteria in that issue.
+- Don't fill in missing requirements yourself.
+- Ask for clarification when a decision would change scope or behaviour.
+- Never expose credentials or change secrets.
+- Run the relevant tests and report any failures.
+- Open a pull request that summarises the changes and the test results.
+- Never merge without the required human approval.
+</code></pre>
+<div class="callout callout--note">
+<p>Rules cut down on guesswork, but they don't guarantee good behaviour. Someone on the team still has to check what the agent produces.</p>
+</div>
+<h2 id="agree-on-what-done-looks-like">🏁 Agree on what "done" looks like</h2>
+<p>A finished ticket means more than "the AI wrote some code". Before you close it, you should be able to tick every box:</p>
+<div class="checklist">
 <ul>
-<li>Read the relevant Jira project and issues.</li>
-<li>Access a specific GitHub repository.</li>
-<li>Create a working branch or use an authorised existing branch.</li>
-<li>Commit and push changes.</li>
-<li>Open pull requests.</li>
+<li>The requested change has been made.</li>
+<li>Each acceptance criterion has been checked.</li>
+<li>The relevant automated tests have run.</li>
+<li>Known failures and limitations are written down.</li>
+<li>A pull request is ready for review.</li>
+<li>A human reviewer has looked at the changes.</li>
 </ul>
-<p>Reading code, pushing changes, approving a pull request and merging it are separate capabilities. Configure and verify each one independently.</p>
-<p>Use the least privilege necessary, protect credentials and secrets, and follow the organisation's access policies.</p>
-<h2 id="5-establish-the-rules-before-assigning-work">5. Establish the rules before assigning work</h2>
-<p>The agent needs clear operating instructions.</p>
-<p>For example:</p>
-<ul>
-<li>Work only on the assigned Jira issue.</li>
-<li>Follow the stated acceptance criteria.</li>
-<li>Do not assume missing requirements.</li>
-<li>Ask for clarification when a decision would affect scope or behaviour.</li>
-<li>Do not expose credentials or modify secrets.</li>
-<li>Run the relevant tests and report any failures.</li>
-<li>Open a pull request with a summary of changes and validation results.</li>
-<li>Do not merge changes without the required human approval.</li>
-</ul>
-<p>These rules reduce ambiguity, but they do not guarantee correct behaviour. The team must still monitor the agent's output.</p>
-<h2 id="6-define-what-success-looks-like">6. Define what success looks like</h2>
-<p>A completed ticket should mean more than “the AI wrote some code.”</p>
-<p>The expected outcome might include:</p>
-<ul>
-<li>The requested change has been implemented.</li>
-<li>Acceptance criteria have been checked.</li>
-<li>Relevant automated tests have run.</li>
-<li>Known failures or limitations have been documented.</li>
-<li>A pull request is available for review.</li>
-<li>A human reviewer has assessed the changes.</li>
-</ul>
-<p>The TPM can then track the work through the same delivery process used for other team contributions.</p>
+</div>
+<p>From there, the TPM tracks the work through the same delivery process as everyone else's.</p>
 <h2 id="the-takeaway">The takeaway</h2>
-<p>Adding an AI agent to Jira is not merely a configuration exercise. It is a delivery decision involving responsibilities, access, quality controls and accountability.</p>
-<p>The goal is not to remove humans from software development. It is to let AI handle appropriate execution tasks while humans retain control over requirements, technical decisions, risk and approval.</p>
-<p>In the next article, we'll follow the work from a Jira ticket to a GitHub pull request.</p>
+<blockquote>
+<p>Adding an AI agent to Jira isn't just a configuration task. It's a delivery decision about responsibilities, access, quality and accountability.</p>
+</blockquote>
+<p>The point isn't to take humans out of software development. It's to hand the agent the right execution work, while people keep control of the requirements, the technical decisions, the risk and the final approval.</p>
+<p><strong>Up next:</strong> in <a href="/blog/posts/ai-from-jira-to-github/">Part 2</a>, we follow a ticket through the whole workflow, from Jira to a GitHub pull request.</p>
     </div>
     <aside class="card series-box" aria-label="In this series">
-      <h2><span class="tile tile--terra"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></span> In this series: Meet your new AI teammate: Who&#x27;s Working on This Ticket?</h2>
-      <ol class="series-list"><li><span class="current" aria-current="page"><span class="n">1</span>Who&#x27;s Working on This Ticket? Introducing Your AI Teammate</span></li><li><a href="/blog/posts/ai-from-jira-to-github/"><span class="n">2</span>From Jira Ticket to GitHub Pull Request: Putting Your AI Teammate to Work</a></li><li><a href="/blog/posts/ai-practical-walthrough/"><span class="n">3</span>Assign It a Task. Can You Trust the Result? A Jira-to-GitHub Simulation</a></li></ol>
+      <h2><span class="tile tile--terra"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></span> In this series: AI as a Teammate: Who&#x27;s Working on This Ticket?</h2>
+      <ol class="series-list"><li><span class="current" aria-current="page"><span class="n">1</span>Who&#x27;s Working on This Ticket? Introducing Your AI Teammate</span></li><li><a href="/blog/posts/ai-from-jira-to-github/"><span class="n">2</span>From Jira Ticket to GitHub Pull Request: Putting Your AI Teammate to Work</a></li><li><a href="/blog/posts/ai-practical-walkthrough/"><span class="n">3</span>Assign It a Task. Can You Trust the Result? A Jira-to-GitHub Simulation</a></li></ol>
     </aside>
     <nav class="pager" aria-label="Series navigation"><a class="next" href="/blog/posts/ai-from-jira-to-github/"><small>Next · Part 2 →</small>From Jira Ticket to GitHub Pull Request: Putting Your AI Teammate to Work</a></nav>
   </div>
@@ -140,7 +228,7 @@
   <div class="container">
     <div class="footer-grid">
       <div><strong>Karen Rumbie · Engineering & Delivery</strong><p>Technical thinking, practical lessons, and better ways to build and deliver software.</p></div>
-      <div class="footer-links"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a><a href="/blog/series/meet-your-new-ai-teammate-who-s-working-on-this-ticket/">meet-your-new-ai-teammate-who-s-working-on-this-ticket</a><a href="/blog/posts/ai-in-practice/">The AI-Enabled TPM: </a><a href="/blog/posts/github-pages-deploy-guide/">deploying-to-github-pages</a></div>
+      <div class="footer-links"><a href="https://github.com/KarenRumbidzai">GitHub</a><a href="/blog/">Blog</a><a href="/blog/series/one-machine-many-github-accounts/">One Machine, Many GitHub Accounts</a><a href="/blog/series/ai-as-a-teammate/">AI as a Teammate: Who&#x27;s Working on This Ticket?</a><a href="/blog/posts/ai-in-practice/">The AI-Enabled TPM</a><a href="/blog/posts/github-pages-deploy-guide/">Deploying to GitHub Pages and Understanding the Jekyll Engine</a></div>
     </div>
     <div class="footer-copy">© 2026 Karen Rumbie</div>
   </div>
